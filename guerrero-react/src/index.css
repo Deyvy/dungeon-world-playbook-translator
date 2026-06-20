@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-averia: 'Averia Libre', 'AveriaLibre', sans-serif;
+  --font-metamorphous: 'Metamorphous', serif;
+
+  --color-grunge-black: #1a1a1a;
+  --color-sheet-bg: #f5f0e8;
+  --color-sheet-border: #333;
+  --color-badge-bg: #1a1a1a;
+  --color-badge-text: #ffffff;
+  --color-section-header: #1a1a1a;
+  --color-fill-line: #333;
+}
+
+/* ===== Font Face Declarations ===== */
+@font-face {
+  font-family: 'AveriaLibre';
+  src: url('/fonts/AveriaLibre-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AveriaLibre';
+  src: url('/fonts/AveriaLibre-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AveriaLibre';
+  src: url('/fonts/AveriaLibre-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AveriaLibre';
+  src: url('/fonts/AveriaLibre-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'AveriaLibre';
+  src: url('/fonts/AveriaLibre-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'AveriaLibre';
+  src: url('/fonts/AveriaLibre-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Metamorphous';
+  src: url('/fonts/Metamorphous-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ===== Base Styles ===== */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  background: #e8e4dc;
+  font-family: var(--font-averia);
+}
+
+/* ===== Grunge Section Header ===== */
+.section-header {
+  position: relative;
+  background: var(--color-section-header);
+  color: white;
+  padding: 2px 12px;
+  font-family: var(--font-averia);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+  line-height: 1.6;
+  clip-path: polygon(
+    0% 2%,
+    2% 0%,
+    5% 3%,
+    8% 1%,
+    12% 2%,
+    15% 0%,
+    20% 3%,
+    25% 1%,
+    30% 2%,
+    35% 0%,
+    40% 2%,
+    45% 1%,
+    50% 3%,
+    55% 0%,
+    60% 2%,
+    65% 1%,
+    70% 3%,
+    75% 0%,
+    80% 2%,
+    85% 1%,
+    90% 3%,
+    95% 0%,
+    98% 2%,
+    100% 1%,
+    100% 97%,
+    98% 100%,
+    95% 98%,
+    92% 100%,
+    88% 97%,
+    85% 100%,
+    80% 98%,
+    75% 100%,
+    70% 97%,
+    65% 100%,
+    60% 98%,
+    55% 100%,
+    50% 97%,
+    45% 100%,
+    40% 98%,
+    35% 100%,
+    30% 97%,
+    25% 100%,
+    20% 98%,
+    15% 100%,
+    10% 97%,
+    5% 100%,
+    2% 98%,
+    0% 100%
+  );
+}
+
+/* ===== Fill-in line ===== */
+.fill-line {
+  border-bottom: 1px solid var(--color-fill-line);
+  flex: 1;
+  min-width: 20px;
+  margin: 0 4px;
+  position: relative;
+  top: -2px;
+}
+
+/* ===== Checkbox styling ===== */
+.checkbox-square {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #333;
+  background: white;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  html,
+  body,
+  #root {
+    background: white;
+    margin: 0;
+    padding: 0;
+  }
+  .playbook-sheet {
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    page-break-inside: avoid;
+  }
+}

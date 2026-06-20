@@ -1,0 +1,64 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Project: Dungeon World Playbook Translator (greenfield + active Vite/React/TS frontend)
+  Architecture: Hardcoded React playbook sheet (ficha-guerrero-react) + planned structured translator pipeline
+  Tech Stack: Vite 8 + React 19 + TypeScript 6 + Tailwind CSS 4 + ESLint 10
+  Testing: None configured — no test runner, no test framework, no coverage
+  Style: Print-first, pixel-focused visual replica with CSS clip-path grunge effects
+  Persistence: hybrid (openspec/ files + Engram memory)
+
+strict_tdd: false
+
+testing:
+  runner:
+    command: ""
+    framework: ""
+  layers:
+    unit: false
+    integration: false
+    e2e: false
+  coverage:
+    available: false
+    command: ""
+  quality:
+    linter:
+      available: true
+      command: "npm run lint"
+    type_checker:
+      available: true
+      command: "npx tsc -b"
+    formatter:
+      available: false
+      command: ""
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - State scope explicitly (in scope / out of scope)
+    - Link to prior exploration if applicable
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+    - Reference the typed data interfaces as contracts
+  design:
+    - Document architecture decisions with rationale
+    - Include component hierarchy
+    - Include data flow diagrams for non-trivial flows
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+    - Include review workload forecast for PR planning
+  apply:
+    - Follow existing code patterns (Tailwind + TS strict)
+    - Match the established component structure
+    tdd: false
+    test_command: ""
+  verify:
+    test_command: ""
+    build_command: "npm run build"
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
+    - Verify archived spec content against live source
