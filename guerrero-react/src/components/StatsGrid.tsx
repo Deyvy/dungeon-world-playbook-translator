@@ -5,18 +5,18 @@ export default function StatsGrid() {
   const { stats, statValuesHint, statModifiers } = guerreroData;
 
   return (
-    <div className="mb-2">
-      {/* Values hint */}
-      <p className="font-averia mb-1 text-center text-xs text-gray-600 italic">{statValuesHint}</p>
+    <div>
+      {/* Values hint (above the stat blocks) — vertically centered in the gap */}
+      <p className="font-averia text-center text-xs text-gray-600 italic" style={{ marginTop: '0', marginBottom: '7px' }}>{statValuesHint}</p>
 
       {/* 2 rows x 3 cols of stat blocks */}
-      <div className="mb-1 grid grid-cols-3 gap-x-4 gap-y-2">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 8px', marginBottom: '4px' }}>
         {stats.map((stat) => (
           <StatBlock key={stat.abbr} stat={stat} />
         ))}
       </div>
 
-      {/* Modifiers */}
+      {/* Modifiers (below the stat blocks) */}
       <p className="font-averia text-center text-xs text-gray-600 italic">{statModifiers}</p>
     </div>
   );
