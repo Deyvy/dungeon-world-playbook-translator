@@ -11,6 +11,14 @@ interface ArmorHPDamageProps {
 export default function ArmorHPDamage({ hpBase, damageDie }: ArmorHPDamageProps) {
   const dieIcon = DIE_ICONS[damageDie];
 
+  // Per-die horizontal offset — each icon has its own natural frame
+  const dieLeft: Record<DamageDie, string> = {
+    d4: '138px',
+    d6: '144px',
+    d8: '144px',
+    d10: '138px',
+  };
+
   // Shared icon style for armor and life — centered on header, right side
   const iconStyle = {
     position: 'absolute' as const,
@@ -88,7 +96,7 @@ export default function ArmorHPDamage({ hpBase, damageDie }: ArmorHPDamageProps)
           style={{
             position: 'absolute',
             top: '-9px',
-            left: '138px',
+            left: dieLeft[damageDie],
             height: '40px',
             objectFit: 'contain',
             zIndex: 2,
