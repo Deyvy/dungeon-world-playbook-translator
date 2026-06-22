@@ -1,46 +1,9 @@
-export interface StatData {
-  name: string;
-  abbr: string;
-  debuff: string;
-}
+import type { PlaybookData } from '../playbookData';
+import classIcon from '../../assets/icons/class-icon.png';
 
-export interface MoveChoice {
-  label: string;
-}
+export const guerreroData: PlaybookData = {
+  meta: { name: 'El Guerrero', classIcon },
 
-export interface MoveChoiceGroup {
-  heading: string;
-  items: MoveChoice[];
-  columns?: number;
-}
-
-export interface MoveData {
-  title: string;
-  hasXMark: boolean;
-  description: string;
-  subtext?: string;
-  choiceGroups?: MoveChoiceGroup[];
-}
-
-export interface GuerreroData {
-  header: {
-    raceNames: { race: string; names: string[] }[];
-    requiredLevel: string;
-  };
-  appearance: {
-    prompt: string;
-    fields: { label: string; options: string }[];
-  };
-  stats: StatData[];
-  statValuesHint: string;
-  statModifiers: string;
-  alignment: { label: string; description: string }[];
-  bonds: string[];
-  moves: MoveData[];
-  races: { name: string; description: string }[];
-}
-
-export const guerreroData: GuerreroData = {
   header: {
     requiredLevel: 'Necesarios: Nivel+7',
     raceNames: [
@@ -117,6 +80,9 @@ export const guerreroData: GuerreroData = {
   statModifiers:
     'Modificadores: 1-3: -3 || 4-5: -2 || 6-8: -1 || 9-12: 0 || 13-15: +1 || 16-17: +2 || 18: +3',
 
+  hpBase: 10,
+  damageDie: 'd10',
+
   alignment: [
     { label: 'Bueno', description: 'Defender a los que son más débiles que tú.' },
     { label: 'Neutral', description: 'Derrotar a un enemigo digno.' },
@@ -134,6 +100,7 @@ export const guerreroData: GuerreroData = {
     {
       title: 'Arma Distintiva',
       hasXMark: true,
+      span: 'full',
       description:
         'Esta es tu arma. Hay muchas como ella, pero esta es la tuya. Tu arma es tu mejor amiga. Es tu vida. Eres tan dueño de ella como de tu vida. Sin ti, tu arma es inútil. Sin tu arma, también lo eres tú. Debes empuñarla fielmente.',
       subtext: '¿Tiene nombre?: ______________________',
