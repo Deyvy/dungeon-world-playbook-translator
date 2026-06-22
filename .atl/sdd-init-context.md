@@ -13,7 +13,7 @@
 - **Domain**: Dungeon World TTRPG playbook translation/localization tool
 - **Frontend**: Static React replica of "El Guerrero" (Fighter) playbook sheet page 1
 - **Existing artifacts**:
-  - `guerrero-react/` — Vite 8 + React 19 + TypeScript 6 + Tailwind CSS 4 app
+  - `playbook-react/` — Vite 8 + React 19 + TypeScript 6 + Tailwind CSS 4 app
   - `recursos/` — `Guerrero.pdf`, `Guerrero_1.png`, `Guerrero_2.png`, fonts, icons
   - `openspec/` — full SDD lifecycle for `ficha-guerrero-react` and exploration for `playbook-translator`
 - **Git**: Not initialized

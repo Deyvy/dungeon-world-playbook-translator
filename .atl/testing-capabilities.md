@@ -32,7 +32,7 @@
 
 ### Notes
 
-- Project has a Vite 8 + React 19 + TypeScript 6 + Tailwind CSS 4 frontend in `guerrero-react/`.
+- Project has a Vite 8 + React 19 + TypeScript 6 + Tailwind CSS 4 frontend in `playbook-react/`.
 - ESLint 10 is configured via `@eslint/js` + `typescript-eslint`.
 - No test runner is configured — no vitest, jest, or playwright dependency.
 - No test files exist in the source tree.
