@@ -1,10 +1,23 @@
-import type { PlaybookData } from '../data/playbookData';
+export default function HeaderSection() {
+  const raceNames = [
+    {
+      race: 'ENANO',
+      names: ['Ozruk', 'Surtur', 'Brunhilda', 'Annika', 'Janos', 'Greta', 'Dim', 'Rundrig', 'Jari', 'Xotoq'],
+    },
+    {
+      race: 'MEDIANO',
+      names: ['Finnegan', 'Olive', 'Randolph', 'Bartleby', 'Aubrey', 'Baldwin', 'Becca'],
+    },
+    {
+      race: 'ELFO',
+      names: ['Elobiir', 'Sharaseth', 'Hasrith', 'Shevaral', 'Cadeus', 'Eldar', 'Kithracet', 'Thelian'],
+    },
+    {
+      race: 'HUMANO',
+      names: ['Hawke', 'Rudiger', 'Gregor', 'Brianne', 'Walton', 'Castor', 'Shanna', 'Ajax', 'Hob'],
+    },
+  ];
 
-interface HeaderSectionProps {
-  header: PlaybookData['header'];
-}
-
-export default function HeaderSection({ header }: HeaderSectionProps) {
   return (
     <div className="mb-3">
       {/* Main header row with required level note aligned to PX box */}
@@ -12,7 +25,7 @@ export default function HeaderSection({ header }: HeaderSectionProps) {
         {/* Required level note - aligned with PX box right edge, small margin above */}
         <div className="absolute right-0" style={{ top: '-4px' }}>
           <span className="font-averia text-[10px] text-gray-500 italic">
-            {header.requiredLevel}
+            Necesarios: Nivel+7
           </span>
         </div>
 
@@ -53,7 +66,7 @@ export default function HeaderSection({ header }: HeaderSectionProps) {
 
       {/* Race name lists below the header */}
       <div className="mt-2 font-averia grid grid-cols-2 gap-x-4 gap-y-1 leading-tight" style={{ color: '#6c6e70', fontSize: '9px' }}>
-        {header.raceNames.map((race) => (
+        {raceNames.map((race) => (
           <div key={race.race}>
             <span className="font-bold uppercase">{race.race}:</span>{' '}
             <span className="italic">{race.names.join(', ')}</span>

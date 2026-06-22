@@ -4,58 +4,6 @@ import classIcon from '../../assets/icons/class-icon.png';
 export const guerreroData: PlaybookData = {
   meta: { name: 'El Guerrero', classIcon },
 
-  header: {
-    requiredLevel: 'Necesarios: Nivel+7',
-    raceNames: [
-      {
-        race: 'ENANO',
-        names: [
-          'Ozruk',
-          'Surtur',
-          'Brunhilda',
-          'Annika',
-          'Janos',
-          'Greta',
-          'Dim',
-          'Rundrig',
-          'Jari',
-          'Xotoq',
-        ],
-      },
-      {
-        race: 'MEDIANO',
-        names: ['Finnegan', 'Olive', 'Randolph', 'Bartleby', 'Aubrey', 'Baldwin', 'Becca'],
-      },
-      {
-        race: 'ELFO',
-        names: [
-          'Elobiir',
-          'Sharaseth',
-          'Hasrith',
-          'Shevaral',
-          'Cadeus',
-          'Eldar',
-          'Kithracet',
-          'Thelian',
-        ],
-      },
-      {
-        race: 'HUMANO',
-        names: [
-          'Hawke',
-          'Rudiger',
-          'Gregor',
-          'Brianne',
-          'Walton',
-          'Castor',
-          'Shanna',
-          'Ajax',
-          'Hob',
-        ],
-      },
-    ],
-  },
-
   appearance: {
     prompt: 'Elige una de cada o escribe una propia:',
     fields: [

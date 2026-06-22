@@ -27,10 +27,6 @@ export interface MoveData {
 
 export interface PlaybookData {
   meta: { name: string; classIcon: string };
-  header: {
-    raceNames: { race: string; names: string[] }[];
-    requiredLevel: string;
-  };
   appearance: {
     prompt: string;
     fields: { label: string; options: string }[];
