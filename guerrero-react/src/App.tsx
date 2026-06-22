@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { toCanvas } from 'html-to-image';
+import domtoimage from 'dom-to-image-more';
 import { jsPDF } from 'jspdf';
 import PlaybookSheet from './components/PlaybookSheet';
 import { guerreroData } from './data/playbooks/guerreroData';
@@ -11,16 +11,14 @@ export default function App() {
 
     const rect = sheet.getBoundingClientRect();
 
-    const canvas = await toCanvas(sheet, {
-      pixelRatio: 3,
-      backgroundColor: '#f5f0e8',
+    const imgData = await domtoimage.toPng(sheet, {
       width: rect.width,
       height: rect.height,
-      canvasWidth: Math.round(rect.width * 3),
-      canvasHeight: Math.round(rect.height * 3),
+      pixelRatio: 4,
+      bgcolor: '#f5f0e8',
+      cacheBust: true,
     });
 
-    const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pdfW = pdf.internal.pageSize.getWidth();
     const pdfH = (rect.height * pdfW) / rect.width;
