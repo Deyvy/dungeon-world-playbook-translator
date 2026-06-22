@@ -67,6 +67,7 @@ export const guerreroData: PlaybookData = {
     {
       title: 'Arma Distintiva',
       hasXMark: true,
+      span: 'full',
       description:
         'Esta es tu arma. Hay muchas como ella, pero esta es la tuya. Tu arma es tu mejor amiga. Es tu vida. Eres tan dueño de ella como de tu vida. Sin ti, tu arma es inútil. Sin tu arma, también lo eres tú. Debes empuñarla fielmente.',
       subtext: '¿Tiene nombre?: ______________________',
