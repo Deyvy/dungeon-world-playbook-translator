@@ -1,143 +1,87 @@
-# Exploration: ficha-guerrero-react
+# Exploration: ficha-guerrero-react — Gap Analysis vs. Reference Image
 
 ## Current State
 
-This is a **greenfield visual replication task**. No source code exists yet. The only prior artifact is `openspec/changes/playbook-translator/exploration.md`, which explored a structured JSON/YAML translator pipeline. That work is related but **not the immediate goal here**: the user explicitly wants the Warrior playbook rendered "tal cual" — visual fidelity comes first, data architecture second.
+The project has a working Vite + React + TypeScript + Tailwind CSS v4 implementation of the "El Guerrero" page-1 playbook sheet. All 13 components exist, fonts are loaded via `@font-face`, the `guerreroData.ts` content object is wired up, and the page renders a single A4-ish sheet with a left sidebar, header, three-column midsection, stats grid, and moves/bonds/race bottom area.
 
-The source of truth is the two-page Spanish "El Guerrero" character sheet (`recursos/Guerrero_1.png` and `recursos/Guerrero_2.png`). It is a dense, print-oriented layout with:
+However, when compared to `recursos/Guerrero_1.png`, the current layout follows the *general* section order but misses several structural, positional, and visual details:
 
-- A vertical left/right sidebar bearing "EL GUERRERO" and class icons.
-- Black grunge header bars with white uppercase labels.
-- Circular stat badges (FUE, DES, CON, INT, SAB, CAR) with debuff checkboxes.
-- Shield, heart, and d10 icons for armor, hit points, and damage.
-- Checkbox groups for alignment, gear, race, moves, and advanced moves.
-- Handwritten-style underlined input fields.
-- Two-column advanced moves lists on page 2.
-- A consumables grid on page 2.
+- The **right-side panel** (`Vínculos` + `Raza`) is placed at the bottom instead of running down the right edge alongside the stats and moves.
+- The **stats badges** use a vertical stack (name → debuff → circle) instead of the reference's horizontal stat card (name box with a black bottom band holding the circle + debuff checkbox).
+- The **combat trio** (`Armadura`, `Puntos de Golpe`, `Daño`) only renders header bars; it lacks the input boxes, centered icons, and damage `D10` badge shown in the reference.
+- **Movimientos Iniciales** stacks all three moves vertically; the reference shows `Arma Distintiva` as a wide two-column card with `Doblar Barras, Alzar Puertas` and `Blindado` side-by-side underneath.
+- The **sidebar** is missing the DW logo at the top and places the scissors icon in the main content area rather than at the bottom of the sidebar.
+- The **NIVEL** header field is rendered as an underline instead of the reference's circle.
 
 ## Affected Areas
 
-Because the project is greenfield, all files will be new:
-
-- `package.json` / `vite.config.ts` — build tooling.
-- `index.html` — entry point.
-- `src/main.tsx` — React root.
-- `src/App.tsx` — top-level page layout (one or two pages).
-- `src/components/*` — reusable sheet components.
-- `src/index.css` / Tailwind config — grunge textures, custom fonts, print styles.
-- `src/assets/*` — SVG icons (shield, heart, d10, scissors, class icon) and any texture images.
-
-## Domain Understanding
-
-### Visual structure that repeats
-
-1. **Black-bar section headers** — used for APARIENCIA, ARMADURA, ALINEAMIENTO, MOVIMIENTOS INICIALES, EQUIPO, MOVIMIENTOS AVANZADOS, etc. The bar is a solid black rectangle with ragged/grunge edges, white uppercase text, and sometimes a small icon on the left.
-2. **Circular stat badges** — six identical badges containing the abbreviation (FUE/DES/CON/INT/SAB/CAR), the full stat name above, and a debuff checkbox.
-3. **Checkbox list items** — alignment, race, gear, and moves all use square checkboxes with text labels.
-4. **Move cards** — a title, an optional starting-move "X" marker, and body text that may contain nested bullet lists and sub-choices with checkboxes.
-5. **Sidebar banner** — rotated vertical text + decorative class icon; appears on both pages, mirrored left/right.
-
-### Hard layout problems
-
-- The sheet is **print/paginated** in the source image. Web rendering must choose between:
-  - a single long scrollable page,
-  - a side-by-side two-page spread,
-  - or a print-first stylesheet with page breaks.
-- **Grunge aesthetic** — the black bars are not plain rectangles; they have rough edges. This can be approximated with CSS/SVG masks, repeated background images, or ignored if a clean interpretation is acceptable.
-- **Circular stat badges** — require careful absolute/relative positioning so the circle overlaps the stat name bar and the black lower band.
-- **Vertical sidebar** — the class name is rotated 90°. CSS `writing-mode` or `transform: rotate()` handles this, but font choice and kerning matter.
-- **Font matching** — the sheet uses a bold, slightly condensed sans-serif for headers and a readable serif/sans for body. Exact matching requires identifying or substituting fonts (e.g., Bebas Neue, Oswald, or similar free fonts).
+- `src/components/PlaybookSheet.tsx` — overall grid needs restructuring so the right column (`Vínculos`/`Raza`) sits beside stats + moves; scissors placement is wrong.
+- `src/components/VerticalBanner.tsx` — missing DW logo; scissors should live here, not in `PlaybookSheet`.
+- `src/components/HeaderRow.tsx` — `NIVEL` must become a circle; `"Necesarios: Nivel+7"` should sit top-right with `NIVEL`/`PX`.
+- `src/components/ArmorHPDamage.tsx` — needs input boxes, centered SVG icons in grunge headers, and the `D10` damage badge with `+` modifier boxes.
+- `src/components/StatBlock.tsx` + `StatsGrid.tsx` — stat card shape is wrong; needs white box + black bottom band with circle on the left and debuff checkbox on the right.
+- `src/components/BondsSection.tsx` — must move to the right column; blank slots should render as real fill-in lines and extra writing lines should be added.
+- `src/components/RaceSection.tsx` — must move to bottom-right column (content is otherwise close).
+- `src/components/MovesSection.tsx` + `MoveCard.tsx` — `Arma Distintiva` needs a custom two-column internal layout; `Doblar Barras`/`Blindado` must render side-by-side.
+- `src/index.css` — current theme/custom classes are fine, but new component-specific utilities may be needed (e.g., stat-card bottom band, damage badge).
+- `src/data/guerreroData.ts` — content is mostly correct, but `StatData` lacks the `modifier` field mentioned in `design.md` and `MoveData` does not model the reference's "aspecto" as a free-text fill-in line (it is modeled as a checkbox group).
+- `openspec/changes/ficha-guerrero-react/spec.md` — contains an incorrect requirement stating stats must render in a "single row"; the reference is a 2×3 grid.
 
 ## Approaches
 
-### 1. Pure hardcoded page with inline content
+### 1. Incremental component fixes
 
-Build one or two big components that embed all Spanish text directly in JSX. No JSON schema, no data layer.
+Patch each component in place while keeping the current `PlaybookSheet` structure mostly intact.
 
-- **Pros**: Fastest path to visual fidelity; no schema design overhead; matches "tal cual" intent.
-- **Cons**: No reuse for future playbooks; text and layout are tightly coupled; harder to edit or translate later.
-- **Effort**: Low
+- **Pros**: Smaller individual edits; lower chance of breaking the existing render.
+- **Cons**: The layout architecture is still wrong (`Vínculos`/`Raza` at the bottom, moves stacked), so many reference details cannot be fixed without eventually restructuring `PlaybookSheet` anyway.
+- **Effort**: Medium
 
-### 2. Hardcoded layout + local data object
+### 2. Layout-first refactor + specialized sub-components
 
-Keep the layout components hardcoded, but extract the Warrior content into a local TypeScript object (`guerreroData.ts`) that is passed into reusable presentational components.
+First restructure `PlaybookSheet` into the reference's true grid (header → 3-col midsection → 2-col lower section), then build specialized components for the parts that diverge most: `StatBlock`, `ArmorHPDamage`, `ArmaDistintivaCard`, and a side-by-side `SimpleMovePair`.
 
-- **Pros**: Still prioritizes visual fidelity; separates content from layout; creates a de facto schema for future playbooks without upfront schema design; easy to swap data later.
-- **Cons**: Slightly more files; the data object may feel like overkill for a single sheet.
-- **Effort**: Low–Medium
-
-### 3. Full schema-driven architecture first
-
-Design a JSON/YAML playbook schema, validate it, and render from it, continuing the prior exploration's recommendation.
-
-- **Pros**: Aligns with the long-term translator vision; reusable across all classes.
-- **Cons**: Premature for "just make it look like the image"; schema work delays visual delivery; the prior exploration already identified unresolved scope questions that should be answered first.
+- **Pros**: Matches the reference holistically; cleanly separates layout concerns from content; easier to verify visually section by section.
+- **Cons**: Touches more files in one pass; requires careful A4 height management to avoid overflow.
 - **Effort**: Medium–High
+
+### 3. Reference-image-first rebuild with absolute positioning
+
+Treat the image as a rigid blueprint and use absolute/fixed positioning for every section.
+
+- **Pros**: Pixel-level control; can chase exact reference alignment.
+- **Cons**: Fragile, hard to maintain, poor print/accessibility behavior, and overkill for a static replica.
+- **Effort**: High
 
 ## Recommendation
 
-Use **Approach 2** for this first iteration:
+Use **Approach 2 (layout-first refactor + specialized sub-components)**.
 
-- Tech stack: **Vite + React + TypeScript + Tailwind CSS**.
-- Keep layout components hardcoded and pixel-focused.
-- Extract Warrior content into a local `guerreroData.ts` object so components are reusable and future playbooks can follow the same shape.
-- Add a small plain-CSS/SVG layer for grunge edges and icons that Tailwind cannot express cleanly.
+The current code already has the right data layer and component boundaries; the main problem is that the top-level grid and a few high-impact components do not match the reference. Refactoring `PlaybookSheet` first makes every child component simpler to reason about, and creating specialized components for `StatBlock`, `ArmorHPDamage`, and `Arma Distintiva` keeps the implementation maintainable while achieving visual fidelity.
 
-Rationale: it satisfies "por ahora solamente quiero que sea tal cual" while avoiding a dead-end hardcode. The local data object becomes the seed of the schema explored in `playbook-translator/exploration.md`, without blocking the visual work on schema debates.
+Specific actions:
 
-## Proposed Component Hierarchy
-
-```
-App
-└─ PlaybookSheet
-   ├─ VerticalClassBanner          (EL GUERRERO sidebar, left/right variants)
-   ├─ HeaderRow                    (Nombre, Nivel, PX, name lists)
-   ├─ SectionHeader                (reusable black bar + icon)
-   ├─ AppearanceSection
-   ├─ ArmorHPDamageGroup           (shield, heart, d10)
-   ├─ AlignmentSection             (checkbox list)
-   ├─ StatsGrid
-   │  └─ StatBlock × 6             (FUE, DES, CON, INT, SAB, CAR)
-   ├─ BondsSection
-   ├─ InitialMovesSection
-   │  └─ MoveCard × N              (title, body, nested choices)
-   ├─ RaceSection                  (checkbox list)
-   ├─ GearSection                  (page 2)
-   ├─ AdvancedMovesSection         (page 2, two columns)
-   │  └─ MoveCard × N
-   └─ ConsumablesSection           (page 2 grid)
-```
-
-### Styling plan
-
-- **Tailwind** for grid/flex layout, spacing, typography scale, and responsive behavior.
-- **Plain CSS/SVG** for:
-  - Grunge black-bar backgrounds (SVG mask or background image).
-  - Circular stat badges (`border-radius: 50%`, absolute positioning).
-  - Custom checkbox styling.
-  - Vertical sidebar text (`writing-mode: vertical-rl` or `rotate`).
-- **Print styles** (`@media print`) if PDF/print output is desired, defining page breaks and hiding chrome.
+1. **Redesign `PlaybookSheet`** into:
+   - `VerticalBanner` (sidebar)
+   - `HeaderRow` (full width)
+   - 3-column row: `AppearanceSection` | `ArmorHPDamage` | `AlignmentSection`
+   - 2-column row: `StatsGrid` + `MovesSection` on the left (~2/3), `BondsSection` + `RaceSection` on the right (~1/3).
+2. **Move the scissors icon** into `VerticalBanner` at the bottom; add the DW logo at the top.
+3. **Rebuild `StatBlock`** as a white card with a black bottom band: full stat name top-left, white circle with black abbreviation on the band, debuff text + checkbox to the right.
+4. **Rebuild `ArmorHPDamage`** with centered SVG icons in grunge headers and real input/fill-in areas for armor, HP max/current, and damage `D10 + mods`.
+5. **Create a dedicated `ArmaDistintiva` layout** with description + weapon type + distance on the left, mejoras + aspecto on the right; render `Doblar Barras` and `Blindado` side-by-side below it.
+6. **Fix `HeaderRow`**: `NIVEL` as a circle, `"Necesarios: Nivel+7"` aligned top-right.
+7. **Update `BondsSection`** to render fill-in blanks as underlined spaces and add extra blank writing lines.
+8. **Correct `spec.md`** to state the stats grid is 2×3, not a single row.
 
 ## Risks
 
-- **Layout mismatch**: the original is a print PDF; translating it to a responsive web layout will require compromises.
-- **Font availability**: matching the exact typography may require purchasing or substituting fonts.
-- **Grunge fidelity**: achieving the rough-edged black bars purely in CSS is non-trivial; may need raster/SVG assets.
-- **Two-page rendering**: side-by-side page 1 + page 2 may not fit narrow viewports; scrolling may break the visual "sheet" feel.
-- **Scope creep**: the sheet includes equipment and advanced moves (page 2); the user must confirm whether page 2 is in scope or only page 1.
-- **Unclear relationship to translator project**: this work could either be a standalone visual demo or the UI layer of the structured translator. That decision affects data modeling.
-
-## Open Questions
-
-1. Should the component render **page 1 only** or **both pages** of the Warrior sheet?
-2. Should it be **interactive** (working checkboxes and input fields) or a **static visual replica**?
-3. Is **print/PDF output** a requirement, or is on-screen viewing enough?
-4. Should the layout be a **single scrollable page**, a **two-page spread**, or a **print-first page-break layout**?
-5. Are we building a **standalone demo** or the future UI for the playbook translator?
-6. Are there preferred **free fonts** to approximate the sheet's typography?
+- **A4 height overflow**: moving `Vínculos` and `Raza` into the right column and widening `Arma Distintiva` may push content beyond the current `1123px` sheet. Tuning padding, font sizes, and card internal spacing will be required.
+- **Tailwind v4 theme constraints**: some reference shapes (e.g., the stat card bottom band, grunge headers with centered icons) may need plain CSS additions in `index.css` or inline styles.
+- **Icon fidelity**: the existing SVGs are simple; the reference icons have a hand-drawn/grunge feel. Replacing or styling them may be needed for full visual match.
+- **Data model mismatch for `Arma Distintiva`**: the current `MoveData` + `choiceGroups` model does not naturally express the reference's two-column card layout; a one-off component or richer layout hint in data will be necessary.
+- **Spec contradiction**: `spec.md` says stats are in a single row, which conflicts with both the reference image and the current 2×3 implementation. The spec should be updated before design/tasks phases proceed.
 
 ## Ready for Proposal
 
-**Yes, with caveats.**
-
-The visual task is clear enough to propose a Vite + React + TypeScript + Tailwind implementation of the Warrior sheet using Approach 2 (hardcoded layout + local data object). The orchestrator should confirm the open questions above — especially page scope, interactivity, and print needs — before the proposal is finalized.
+**Yes**, with the clarification that the next phase should update `spec.md` to reflect the 2×3 stats grid and the reference's true right-column / two-column moves layout.
