@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import html2canvas from 'html2canvas';
+import { toCanvas } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 import PlaybookSheet from './components/PlaybookSheet';
 import { guerreroData } from './data/playbooks/guerreroData';
@@ -9,17 +9,21 @@ export default function App() {
     const sheet = document.querySelector<HTMLElement>('.playbook-sheet');
     if (!sheet) return;
 
-    const canvas = await html2canvas(sheet, {
-      scale: 3,
-      useCORS: true,
+    const rect = sheet.getBoundingClientRect();
+
+    const canvas = await toCanvas(sheet, {
+      pixelRatio: 3,
       backgroundColor: '#f5f0e8',
-      logging: false,
+      width: rect.width,
+      height: rect.height,
+      canvasWidth: Math.round(rect.width * 3),
+      canvasHeight: Math.round(rect.height * 3),
     });
 
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pdfW = pdf.internal.pageSize.getWidth();
-    const pdfH = (canvas.height * pdfW) / canvas.width;
+    const pdfH = (rect.height * pdfW) / rect.width;
 
     pdf.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
     pdf.save(`${guerreroData.meta.name.toLowerCase().replace(/\s+/g, '-')}-ficha.pdf`);
@@ -27,7 +31,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#e8e4dc] py-8">
-      {/* Download button — hidden when printing (kept for the print-a11y case) */}
+      {/* Download button */}
       <div className="no-print flex justify-center mb-4">
         <button
           onClick={downloadPDF}
