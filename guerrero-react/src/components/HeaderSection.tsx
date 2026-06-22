@@ -1,23 +1,8 @@
-export default function HeaderSection() {
-  const raceNames = [
-    {
-      race: 'ENANO',
-      names: ['Ozruk', 'Surtur', 'Brunhilda', 'Annika', 'Janos', 'Greta', 'Dim', 'Rundrig', 'Jari', 'Xotoq'],
-    },
-    {
-      race: 'MEDIANO',
-      names: ['Finnegan', 'Olive', 'Randolph', 'Bartleby', 'Aubrey', 'Baldwin', 'Becca'],
-    },
-    {
-      race: 'ELFO',
-      names: ['Elobiir', 'Sharaseth', 'Hasrith', 'Shevaral', 'Cadeus', 'Eldar', 'Kithracet', 'Thelian'],
-    },
-    {
-      race: 'HUMANO',
-      names: ['Hawke', 'Rudiger', 'Gregor', 'Brianne', 'Walton', 'Castor', 'Shanna', 'Ajax', 'Hob'],
-    },
-  ];
+interface HeaderSectionProps {
+  raceNames?: { race: string; names: string[] }[];
+}
 
+export default function HeaderSection({ raceNames }: HeaderSectionProps) {
   return (
     <div className="mb-3">
       {/* Main header row with required level note aligned to PX box */}
@@ -64,15 +49,17 @@ export default function HeaderSection() {
         </div>
       </div>
 
-      {/* Race name lists below the header */}
-      <div className="mt-2 font-averia grid grid-cols-2 gap-x-4 gap-y-1 leading-tight" style={{ color: '#6c6e70', fontSize: '9px' }}>
-        {raceNames.map((race) => (
-          <div key={race.race}>
-            <span className="font-bold uppercase">{race.race}:</span>{' '}
-            <span className="italic">{race.names.join(', ')}</span>
-          </div>
-        ))}
-      </div>
+      {/* Race name lists below the header — only render when playbook provides them */}
+      {raceNames && raceNames.length > 0 && (
+        <div className="mt-2 font-averia grid grid-cols-2 gap-x-4 gap-y-1 leading-tight" style={{ color: '#6c6e70', fontSize: '9px' }}>
+          {raceNames.map((race) => (
+            <div key={race.race}>
+              <span className="font-bold uppercase">{race.race}:</span>{' '}
+              <span className="italic">{race.names.join(', ')}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

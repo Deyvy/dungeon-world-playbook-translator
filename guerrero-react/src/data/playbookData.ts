@@ -27,6 +27,8 @@ export interface MoveData {
 
 export interface PlaybookData {
   meta: { name: string; classIcon: string };
+  /** Optional per-playbook example names for each race, displayed below the header row */
+  raceNames?: { race: string; names: string[] }[];
   appearance: {
     prompt: string;
     fields: { label: string; options: string }[];

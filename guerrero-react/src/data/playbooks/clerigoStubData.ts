@@ -4,6 +4,11 @@ import classIcon from '../../assets/icons/class-icon.png';
 export const clerigoStubData: PlaybookData = {
   meta: { name: 'El Clérigo', classIcon },
 
+  raceNames: [
+    { race: 'HUMANO', names: ['Aldric', 'Brenna', 'Caius', 'Daria', 'Edric', 'Fiona'] },
+    { race: 'ELFO', names: ['Aelindra', 'Caelum', 'Faelwen', 'Thalindra'] },
+  ],
+
   appearance: {
     prompt: 'Elige una de cada o escribe una propia:',
     fields: [

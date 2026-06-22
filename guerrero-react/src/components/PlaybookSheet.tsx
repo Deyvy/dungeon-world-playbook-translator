@@ -35,7 +35,7 @@ export default function PlaybookSheet({ data }: PlaybookSheetProps) {
       {/* Main content area */}
       <div className="flex flex-col p-3">
         {/* Header section: NOMBRE / NIVEL / PX + race names */}
-        <HeaderSection />
+        <HeaderSection raceNames={data.raceNames} />
 
         {/* Two-column layout:
             Left (2/3): Apariencia | Armadura on top row, Stats + Moves below
