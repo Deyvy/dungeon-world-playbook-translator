@@ -67,7 +67,6 @@ export const guerreroData: PlaybookData = {
     {
       title: 'Arma Distintiva',
       hasXMark: true,
-      span: 'full',
       description:
         'Esta es tu arma. Hay muchas como ella, pero esta es la tuya. Tu arma es tu mejor amiga. Es tu vida. Eres tan dueño de ella como de tu vida. Sin ti, tu arma es inútil. Sin tu arma, también lo eres tú. Debes empuñarla fielmente.',
       subtext: '¿Tiene nombre?: ______________________',
@@ -89,6 +88,12 @@ export const guerreroData: PlaybookData = {
           columns: 2,
           items: [{ label: 'Toque' }, { label: 'Corto alcance' }, { label: 'Cerca' }],
         },
+      ],
+    },
+    {
+      title: 'Arma Distintiva (cont.)',
+      hasXMark: false,
+      choiceGroups: [
         {
           heading: 'Elige dos mejoras:',
           columns: 1,
