@@ -1,7 +1,10 @@
 import dwIcon from '../assets/icons/dw-icon.png';
-import classIcon from '../assets/icons/class-icon.png';
 
-export default function VerticalBanner() {
+interface VerticalBannerProps {
+  meta: { name: string; classIcon: string };
+}
+
+export default function VerticalBanner({ meta }: VerticalBannerProps) {
   return (
     <div
       className="relative flex flex-col items-center overflow-hidden h-full"
@@ -27,7 +30,7 @@ export default function VerticalBanner() {
         style={{ paddingBottom: '20px' }}
       >
         <img
-          src={classIcon}
+          src={meta.classIcon}
           alt="Class"
           style={{ width: '40px', height: '40px', opacity: 0.8 }}
         />
@@ -63,7 +66,7 @@ export default function VerticalBanner() {
               fontWeight: 400,
             }}
           >
-            EL GUERRERO
+            {meta.name.toUpperCase()}
           </span>
         </div>
 

@@ -1,9 +1,11 @@
-import { guerreroData } from '../data/guerreroData';
+import type { PlaybookData } from '../data/playbookData';
 import SectionHeader from './SectionHeader';
 
-export default function RaceSection() {
-  const { races } = guerreroData;
+interface RaceSectionProps {
+  races: PlaybookData['races'];
+}
 
+export default function RaceSection({ races }: RaceSectionProps) {
   return (
     <div className="mb-2">
       <SectionHeader title="Raza" />

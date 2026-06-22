@@ -1,8 +1,10 @@
-import { guerreroData } from '../data/guerreroData';
+import type { PlaybookData } from '../data/playbookData';
 
-export default function HeaderSection() {
-  const { header } = guerreroData;
+interface HeaderSectionProps {
+  header: PlaybookData['header'];
+}
 
+export default function HeaderSection({ header }: HeaderSectionProps) {
   return (
     <div className="mb-3">
       {/* Main header row with required level note aligned to PX box */}

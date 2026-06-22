@@ -1,8 +1,16 @@
 import armorIcon from '../assets/icons/armor-icon.png';
 import lifeIcon from '../assets/icons/life-icon.png';
-import d10Icon from '../assets/icons/d10-icon.png';
+import { DIE_ICONS } from '../data/dieIcons';
+import type { DamageDie } from '../data/dieIcons';
 
-export default function ArmorHPDamage() {
+interface ArmorHPDamageProps {
+  hpBase: number;
+  damageDie: DamageDie;
+}
+
+export default function ArmorHPDamage({ hpBase, damageDie }: ArmorHPDamageProps) {
+  const dieIcon = DIE_ICONS[damageDie];
+
   // Shared icon style for armor and life — centered on header, right side
   const iconStyle = {
     position: 'absolute' as const,
@@ -35,7 +43,7 @@ export default function ArmorHPDamage() {
           style={{ marginTop: '4px', padding: '0 8px', fontSize: '9px' }}
         >
           <span className="italic" style={{ color: '#6c6e70', paddingLeft: '10px', whiteSpace: 'nowrap', flex: 1 }}>
-            Máximos (10+Constitución)
+            Máximos ({hpBase}+Constitución)
           </span>
           {/* Gap where the heart icon bottom protrudes */}
           <div style={{ width: '60px', flexShrink: 0 }} />
@@ -75,8 +83,8 @@ export default function ArmorHPDamage() {
         </div>
         {/* Icon on parent div — avoids clip-path clipping, protrudes like other icons */}
         <img
-          src={d10Icon}
-          alt="d10"
+          src={dieIcon}
+          alt={damageDie}
           style={{
             position: 'absolute',
             top: '-9px',

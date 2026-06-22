@@ -1,9 +1,11 @@
-import { guerreroData } from '../data/guerreroData';
+import type { PlaybookData } from '../data/playbookData';
 import SectionHeader from './SectionHeader';
 
-export default function AppearanceSection() {
-  const { appearance } = guerreroData;
+interface AppearanceSectionProps {
+  appearance: PlaybookData['appearance'];
+}
 
+export default function AppearanceSection({ appearance }: AppearanceSectionProps) {
   return (
     <div style={{ overflow: 'hidden' }}>
       <SectionHeader title="Apariencia" />

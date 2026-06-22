@@ -1,4 +1,4 @@
-import type { MoveData } from '../data/guerreroData';
+import type { MoveData } from '../data/playbookData';
 
 interface MoveCardProps {
   move: MoveData;

@@ -1,9 +1,13 @@
-import { guerreroData } from '../data/guerreroData';
+import type { StatData } from '../data/playbookData';
 import StatBlock from './StatBlock';
 
-export default function StatsGrid() {
-  const { stats, statValuesHint, statModifiers } = guerreroData;
+interface StatsGridProps {
+  stats: StatData[];
+  statValuesHint: string;
+  statModifiers: string;
+}
 
+export default function StatsGrid({ stats, statValuesHint, statModifiers }: StatsGridProps) {
   return (
     <div>
       {/* Values hint (above the stat blocks) — vertically centered in the gap */}

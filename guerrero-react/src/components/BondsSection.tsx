@@ -1,9 +1,10 @@
-import { guerreroData } from '../data/guerreroData';
 import SectionHeader from './SectionHeader';
 
-export default function BondsSection() {
-  const { bonds } = guerreroData;
+interface BondsSectionProps {
+  bonds: string[];
+}
 
+export default function BondsSection({ bonds }: BondsSectionProps) {
   // Replaces underscores in bond text with writable lines
   const renderBond = (bond: string, key: number) => {
     const parts = bond.split(/(_+)/);

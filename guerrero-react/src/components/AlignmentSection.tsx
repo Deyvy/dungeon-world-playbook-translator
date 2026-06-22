@@ -1,9 +1,11 @@
-import { guerreroData } from '../data/guerreroData';
+import type { PlaybookData } from '../data/playbookData';
 import SectionHeader from './SectionHeader';
 
-export default function AlignmentSection() {
-  const { alignment } = guerreroData;
+interface AlignmentSectionProps {
+  alignment: PlaybookData['alignment'];
+}
 
+export default function AlignmentSection({ alignment }: AlignmentSectionProps) {
   return (
     <div className="mb-2">
       <SectionHeader title="Alineamiento" />

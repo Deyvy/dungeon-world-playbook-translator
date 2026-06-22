@@ -1,4 +1,4 @@
-import type { StatData } from '../data/guerreroData';
+import type { StatData } from '../data/playbookData';
 
 interface StatBlockProps {
   stat: StatData;
