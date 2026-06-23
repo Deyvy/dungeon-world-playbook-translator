@@ -3,6 +3,7 @@ import domtoimage from 'dom-to-image-more';
 import { jsPDF } from 'jspdf';
 import PlaybookSheet from './components/PlaybookSheet';
 import PlaybookSheetPage2 from './components/PlaybookSheetPage2';
+import PlaybookSelector from './components/PlaybookSelector';
 import { guerreroData } from './data/playbooks/guerreroData';
 import { clerigoStubData } from './data/playbooks/clerigoStubData';
 import type { PlaybookData } from './data/playbookData';
@@ -47,18 +48,11 @@ export default function App() {
     <div className="min-h-screen bg-[#e8e4dc] py-8">
       {/* Playbook selector + Download */}
       <div className="no-print flex justify-center items-center gap-4 mb-4">
-        <select
-          value={selected}
-          onChange={(e) => setSelected(e.target.value)}
-          className="font-averia text-sm uppercase tracking-wider px-4 py-2 rounded border-0 cursor-pointer"
-          style={{ background: '#211d1e', color: '#e8e4dc' }}
-        >
-          {Object.keys(playbooks).map((key) => (
-            <option key={key} value={key}>
-              {playbooks[key].meta.name}
-            </option>
-          ))}
-        </select>
+        <PlaybookSelector
+          playbooks={playbooks}
+          selected={selected}
+          onSelect={setSelected}
+        />
         <button
           onClick={downloadPDF}
           className="font-averia font-bold text-sm uppercase tracking-wider cursor-pointer"
