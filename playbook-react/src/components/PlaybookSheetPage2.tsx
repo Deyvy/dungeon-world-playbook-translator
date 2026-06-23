@@ -24,8 +24,8 @@ export default function PlaybookSheetPage2({ data }: PlaybookSheetPage2Props) {
         overflow: 'hidden',
         flexShrink: 0,
         backgroundImage: `url(${backgroundImg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: '100% 100%',
+        backgroundPosition: 'top left',
         backgroundColor: '#f5f0e8',
         boxShadow: '0 0 15px rgba(0,0,0,0.2)',
       }}
