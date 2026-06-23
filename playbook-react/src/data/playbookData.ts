@@ -19,10 +19,44 @@ export interface MoveChoiceGroup {
 export interface MoveData {
   title: string;
   hasXMark: boolean;
-  description: string;
+  description?: string;
   subtext?: string;
   choiceGroups?: MoveChoiceGroup[];
   span?: 'half' | 'full';
+  /** Relationship label shown between title and description (e.g. "Reemplaza a: Despiadado") */
+  relationships?: string;
+  /** Bullet list items rendered below description */
+  detailBullets?: string[];
+}
+
+// --- Page 2 gear interfaces ---
+
+export interface GearItem {
+  text: string;
+  checkbox?: boolean;
+}
+
+export interface GearGroup {
+  prompt: string;
+  items: GearItem[];
+}
+
+export interface GearData {
+  fixedItems: string[];
+  defenseGroup: GearGroup;
+  pickTwoGroup: GearGroup;
+  blankLineCount: number;
+  consumableRows: { emoji: string; count: number }[];
+}
+
+export interface AdvancedMoveGroup {
+  instruction: string;
+  moves: MoveData[];
+}
+
+export interface Page2Data {
+  gear: GearData;
+  advancedMoves: AdvancedMoveGroup[];
 }
 
 export interface PlaybookData {
@@ -42,4 +76,6 @@ export interface PlaybookData {
   bonds: string[];
   moves: MoveData[];
   races: { name: string; description: string }[];
+  /** Optional page 2 data (advanced moves + gear) */
+  page2?: Page2Data;
 }
