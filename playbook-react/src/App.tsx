@@ -1,11 +1,21 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import domtoimage from 'dom-to-image-more';
 import { jsPDF } from 'jspdf';
 import PlaybookSheet from './components/PlaybookSheet';
 import PlaybookSheetPage2 from './components/PlaybookSheetPage2';
 import { guerreroData } from './data/playbooks/guerreroData';
+import { clerigoStubData } from './data/playbooks/clerigoStubData';
+import type { PlaybookData } from './data/playbookData';
+
+const playbooks: Record<string, PlaybookData> = {
+  guerrero: guerreroData,
+  clerigo: clerigoStubData,
+};
 
 export default function App() {
+  const [selected, setSelected] = useState('guerrero');
+  const data = playbooks[selected];
+
   const downloadPDF = useCallback(async () => {
     const sheets = document.querySelectorAll<HTMLElement>('.playbook-sheet');
     if (sheets.length === 0) return;
@@ -17,7 +27,6 @@ export default function App() {
     for (let i = 0; i < sheets.length; i++) {
       const sheet = sheets[i];
 
-      // Captura a máxima calidad, sin forzar dimensiones para evitar recortes
       const imgData = await domtoimage.toPng(sheet, {
         pixelRatio: 4,
         bgcolor: '#f5f0e8',
@@ -28,20 +37,28 @@ export default function App() {
         pdf.addPage();
       }
 
-      // La imagen llena exactamente la página A4.
-      // El sheet (794×~1123px) tiene proporción casi idéntica a A4 (210×297mm),
-      // así que la distorsión es mínima (5-10%) e imperceptible.
-      // Esto elimina márgenes, costuras, recortes y pérdida de calidad.
       pdf.addImage(imgData, 'PNG', 0, 0, pageW, pageH);
     }
 
-    pdf.save(`${guerreroData.meta.name.toLowerCase().replace(/\s+/g, '-')}-ficha.pdf`);
-  }, []);
+    pdf.save(`${data.meta.name.toLowerCase().replace(/\s+/g, '-')}-ficha.pdf`);
+  }, [data]);
 
   return (
     <div className="min-h-screen bg-[#e8e4dc] py-8">
-      {/* Download button */}
-      <div className="no-print flex justify-center mb-4">
+      {/* Playbook selector + Download */}
+      <div className="no-print flex justify-center items-center gap-4 mb-4">
+        <select
+          value={selected}
+          onChange={(e) => setSelected(e.target.value)}
+          className="font-averia text-sm uppercase tracking-wider px-4 py-2 rounded border-0 cursor-pointer"
+          style={{ background: '#211d1e', color: '#e8e4dc' }}
+        >
+          {Object.keys(playbooks).map((key) => (
+            <option key={key} value={key}>
+              {playbooks[key].meta.name}
+            </option>
+          ))}
+        </select>
         <button
           onClick={downloadPDF}
           className="font-averia font-bold text-sm uppercase tracking-wider cursor-pointer"
@@ -64,8 +81,8 @@ export default function App() {
         className="flex flex-col items-center no-print"
         style={{ gap: '20px' }}
       >
-        <PlaybookSheet data={guerreroData} />
-        <PlaybookSheetPage2 data={guerreroData} />
+        <PlaybookSheet data={data} />
+        {data.page2 && <PlaybookSheetPage2 data={data} />}
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import type { PlaybookData } from '../playbookData';
 import classIcon from '../../assets/icons/class-icon.png';
+import rationIcon from '../../assets/icons/ration-icon.png';
+import potionIcon from '../../assets/icons/potion-icon.png';
 
 export const clerigoStubData: PlaybookData = {
   meta: { name: 'El Clérigo', classIcon },
@@ -84,4 +86,92 @@ export const clerigoStubData: PlaybookData = {
         'Puedes percibir la presencia de seres no-muertos a corta distancia sin realizar ninguna tirada.',
     },
   ],
+
+  // --- Page 2: Advanced Moves + Equipment (stub) ---
+  page2: {
+    gear: {
+      fixedItems: [
+        'Llevas tu <strong>símbolo sagrado</strong> (peso 0).',
+        '<strong>Raciones de viaje</strong> (5 usos, peso 1).',
+      ],
+      defenseGroup: {
+        prompt: 'Elige tus defensas:',
+        items: [
+          {
+            text: '<strong>Túnica reforzada</strong> (armadura 1, peso 1).<br><strong>Equipo de aventurero</strong> (5 usos, peso 1).',
+            checkbox: true,
+          },
+          {
+            text: '<strong>Coraza</strong> (armadura 2, incómoda, peso 3).',
+            checkbox: true,
+          },
+        ],
+      },
+      pickTwoGroup: {
+        prompt: 'Elige dos:',
+        items: [
+          {
+            text: '<strong>2 Pociones curativas</strong> (cura 10 PG o debilidad, peso 0).',
+            checkbox: true,
+          },
+          {
+            text: '<strong>Escudo</strong> (+1 armadura, peso 2).',
+            checkbox: true,
+          },
+          {
+            text: '<strong>Incienso sagrado</strong> (3 usos, peso 0).',
+            checkbox: true,
+          },
+          {
+            text: '<strong>18 monedas.</strong>',
+            checkbox: true,
+          },
+        ],
+      },
+      blankLineCount: 10,
+      consumableRows: [
+        { icon: rationIcon, groups: [5, 5] },
+        { icon: potionIcon, groups: [3, 3], groupGap: 0.5 },
+      ],
+    },
+
+    advancedMoves: [
+      {
+        instruction: 'Cuando subas a un nivel entre 2 y 5, elige uno de los siguientes movimientos.',
+        moves: [
+          {
+            title: 'Bendición Divina',
+            hasXMark: true,
+            description: 'Cuando <strong>invocas la bendición de tu deidad</strong> sobre un aliado, este recibe +1 a su siguiente tirada.',
+          },
+          {
+            title: 'Fe Inquebrantable',
+            hasXMark: true,
+            description: 'Cuando <strong>te enfrentas a un no-muerto o demonio</strong>, recibes +1 armadura contra sus ataques.',
+          },
+          {
+            title: 'Toque Sanador',
+            hasXMark: true,
+            description: 'Tu <strong>Canalizar Divinidad</strong> ahora cura 2d8 en lugar de 1d8 al elegir la opción de curación.',
+            relationships: 'Reemplaza a: Canalizar Divinidad (curación)',
+          },
+        ],
+      },
+      {
+        instruction: 'Cuando subas a un nivel entre 6 y 10, elige uno de los siguientes movimientos.',
+        moves: [
+          {
+            title: 'Milagro',
+            hasXMark: true,
+            description: 'Una vez por sesión, puedes <strong>pedir un milagro a tu deidad</strong>. El DJ te dirá lo que ocurre.',
+          },
+          {
+            title: 'Aura Protectora',
+            hasXMark: true,
+            description: 'Cuando <strong>alzas tu símbolo sagrado</strong>, todos los aliados cercanos reciben +1 a su siguiente tirada de <em>Desafiar el Peligro</em>.',
+          },
+        ],
+      },
+    ],
+  },
 };
