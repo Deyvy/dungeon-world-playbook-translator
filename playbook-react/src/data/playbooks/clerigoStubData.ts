@@ -1,7 +1,6 @@
 import type { PlaybookData } from '../playbookData';
 import classIcon from '../../assets/icons/class-icon.png';
-import rationIcon from '../../assets/icons/ration-icon.png';
-import potionIcon from '../../assets/icons/potion-icon.png';
+import { CONSUMABLE_ROWS } from '../consumables';
 
 export const clerigoStubData: PlaybookData = {
   meta: { name: 'El Clérigo', classIcon },
@@ -129,10 +128,7 @@ export const clerigoStubData: PlaybookData = {
         ],
       },
       blankLineCount: 10,
-      consumableRows: [
-        { icon: rationIcon, groups: [5, 5] },
-        { icon: potionIcon, groups: [3, 3], groupGap: 0.5 },
-      ],
+      consumableRows: CONSUMABLE_ROWS,
     },
 
     advancedMoves: [

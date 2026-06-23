@@ -1,9 +1,6 @@
 import type { PlaybookData } from '../playbookData';
 import classIcon from '../../assets/icons/class-icon.png';
-import rationIcon from '../../assets/icons/ration-icon.png';
-import ammoIcon from '../../assets/icons/ammo-icon.png';
-import chestIcon from '../../assets/icons/chest-icon.png';
-import potionIcon from '../../assets/icons/potion-icon.png';
+import { CONSUMABLE_ROWS } from '../consumables';
 
 export const guerreroData: PlaybookData = {
   meta: { name: 'El Guerrero', classIcon },
@@ -209,12 +206,7 @@ export const guerreroData: PlaybookData = {
         ],
       },
       blankLineCount: 18,
-      consumableRows: [
-        { icon: rationIcon, groups: [5, 5, 5] },
-        { icon: ammoIcon, groups: [3, 3, 3, 3] },
-        { icon: chestIcon, groups: [5, 5], iconSize: '0.8em', gap: '2px' },
-        { icon: potionIcon, groups: [3, 3, 3], groupGap: 0.5 },
-      ],
+      consumableRows: CONSUMABLE_ROWS,
     },
 
     advancedMoves: [
