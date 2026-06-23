@@ -41,7 +41,7 @@ export default function App() {
       pdf.addImage(imgData, 'PNG', 0, 0, pageW, pageH);
     }
 
-    pdf.save(`${data.meta.name.toLowerCase().replace(/\s+/g, '-')}-ficha.pdf`);
+    pdf.save(`${data.meta.name.toLowerCase().replace(/\s+/g, '-')}.pdf`);
   }, [data]);
 
   return (
