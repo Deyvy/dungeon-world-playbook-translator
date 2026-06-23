@@ -65,8 +65,8 @@ export default function MoveCard({ move }: MoveCardProps) {
   );
   return (
     <div className="mb-1" style={{ marginTop: '3px' }}>
-      {/* Title row: checkbox + title (only if hasXMark). Hidden when split layout handles it in the left column. */}
-      {!hasSplit && move.hasXMark && (
+      {/* Title row: checkbox always shown, ✕ only when hasXMark. Hidden when split layout handles it in the left column. */}
+      {!hasSplit && (
         <div className="flex items-center gap-1.5">
           <div
             style={{
@@ -85,7 +85,7 @@ export default function MoveCard({ move }: MoveCardProps) {
               fontWeight: 'bold',
             }}
           >
-            ✕
+            {move.hasXMark && '✕'}
           </div>
           <span style={{ fontSize: '15px', fontWeight: 'bold', color: '#1a1a1a' }}>
             {move.title}
@@ -167,32 +167,30 @@ export default function MoveCard({ move }: MoveCardProps) {
         <div style={{ margin: `6px 0 0 ${move.hasXMark ? '24px' : '0px'}` }}>
           <div className="grid grid-cols-2 gap-x-4">
             <div>
-              {move.hasXMark && (
-                <div className="flex items-center gap-1.5 mb-1">
-                  <div
-                    style={{
-                      width: '18px',
-                      height: '18px',
-                      border: '1.5px solid #aaa',
-                      borderRadius: '3px',
-                      background: 'white',
-                      flexShrink: 0,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '14px',
-                      lineHeight: 1,
-                      color: '#555',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    ✕
-                  </div>
-                  <span style={{ fontSize: '15px', fontWeight: 'bold', color: '#1a1a1a' }}>
-                    {move.title}
-                  </span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <div
+                  style={{
+                    width: '18px',
+                    height: '18px',
+                    border: '1.5px solid #aaa',
+                    borderRadius: '3px',
+                    background: 'white',
+                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '14px',
+                    lineHeight: 1,
+                    color: '#555',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {move.hasXMark && '✕'}
                 </div>
-              )}
+                <span style={{ fontSize: '15px', fontWeight: 'bold', color: '#1a1a1a' }}>
+                  {move.title}
+                </span>
+              </div>
               {move.description && (
                 <p
                   style={{ fontSize: '10px', color: '#6c6e70', fontFamily: "'AveriaLibre', sans-serif" }}

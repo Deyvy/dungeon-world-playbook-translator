@@ -137,17 +137,17 @@ export const clerigoStubData: PlaybookData = {
         moves: [
           {
             title: 'Bendición Divina',
-            hasXMark: true,
+            hasXMark: false,
             description: 'Cuando <strong>invocas la bendición de tu deidad</strong> sobre un aliado, este recibe +1 a su siguiente tirada.',
           },
           {
             title: 'Fe Inquebrantable',
-            hasXMark: true,
+            hasXMark: false,
             description: 'Cuando <strong>te enfrentas a un no-muerto o demonio</strong>, recibes +1 armadura contra sus ataques.',
           },
           {
             title: 'Toque Sanador',
-            hasXMark: true,
+            hasXMark: false,
             description: 'Tu <strong>Canalizar Divinidad</strong> ahora cura 2d8 en lugar de 1d8 al elegir la opción de curación.',
             relationships: 'Reemplaza a: Canalizar Divinidad (curación)',
           },
@@ -158,12 +158,12 @@ export const clerigoStubData: PlaybookData = {
         moves: [
           {
             title: 'Milagro',
-            hasXMark: true,
+            hasXMark: false,
             description: 'Una vez por sesión, puedes <strong>pedir un milagro a tu deidad</strong>. El DJ te dirá lo que ocurre.',
           },
           {
             title: 'Aura Protectora',
-            hasXMark: true,
+            hasXMark: false,
             description: 'Cuando <strong>alzas tu símbolo sagrado</strong>, todos los aliados cercanos reciben +1 a su siguiente tirada de <em>Desafiar el Peligro</em>.',
           },
         ],

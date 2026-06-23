@@ -216,12 +216,12 @@ export const guerreroData: PlaybookData = {
         moves: [
           {
             title: 'Despiadado',
-            hasXMark: true,
+            hasXMark: false,
             description: 'Cuando <strong>haces daño</strong>, suma +1d4.',
           },
           {
             title: 'Reliquia Familiar',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>consultes a los espíritus que habitan en tu <em>arma distintiva</em></strong>, te darán orientación relativa a la situación actual y, a cambio, podrán hacerte algunas preguntas. Tira+CAR.',
             detailBullets: [
@@ -231,48 +231,48 @@ export const guerreroData: PlaybookData = {
           },
           {
             title: 'Arma Mejorada',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Elige una mejora adicional para tu <em>arma distintiva</em>.',
           },
           {
             title: 'Herrero',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>tienes acceso a una forja</strong> puedes injertar los poderes mágicos de un arma en tu arma distintiva. Este proceso destruye el arma mágica. Tu arma distintiva gana los poderes mágicos del arma destruida.',
           },
           {
             title: 'Piel de Hierro',
-            hasXMark: true,
+            hasXMark: false,
             description: 'Recibes +1 armadura.',
           },
           {
             title: 'Maestría con la Armadura',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>elijas que tu armadura se lleve la peor parte del daño que te corresponde</strong>, el daño se anula, pero debes reducir el valor de la armadura o escudo (a tu elección) en 1. El valor se reduce cada vez que decides hacerlo. El objeto es destruido si la reducción lo deja con armadura 0.',
           },
           {
             title: 'Señales de Peligro',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>disciernes la realidad</strong> durante el combate, recibes +1.',
           },
           {
             title: 'Interrogador',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>parlamentes con amenazas o la violencia inminente como ventaja</strong>, puedes usar FUE en lugar de CAR.',
           },
           {
             title: 'Olor a Sangre',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>hagas <em>Saja-Raja</em></strong> a un enemigo <strong>con éxito</strong>, tu siguiente ataque contra el mismo objetivo hace +1d4 de daño.',
           },
           {
             title: 'Multiclase Aficionado',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Recibes un movimiento de otra clase. Trata tu nivel como si fuera inferior en uno al actual para elegir el movimiento.',
           },
@@ -285,13 +285,13 @@ export const guerreroData: PlaybookData = {
         moves: [
           {
             title: 'Sed de Sangre',
-            hasXMark: true,
+            hasXMark: false,
             relationships: 'Reemplaza a: Despiadado',
             description: 'Cuando <strong>haces daño</strong>, suma +1d8.',
           },
           {
             title: 'Con los Ojos de la Muerte',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>entres en combate</strong>, tira+SAB.',
             detailBullets: [
@@ -302,32 +302,32 @@ export const guerreroData: PlaybookData = {
           },
           {
             title: 'Buen Ojo para las Armas',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>eches un vistazo a las armas del enemigo</strong>, puedes preguntar al DJ cuánto daño hacen.',
           },
           {
             title: 'Guerrero Supremo',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Cuando <strong>hagas <em>Saja-Raja</em></strong> y sacas un 12+, haces daño, evitas el ataque y además impresionas, acobardas o asustas a tu enemigo.',
           },
           {
             title: 'Piel de Acero',
-            hasXMark: true,
+            hasXMark: false,
             relationships: 'Reemplaza a: Piel de hierro',
             description: 'Recibes +2 armadura.',
           },
           {
             title: 'Armadura Perfecta',
-            hasXMark: true,
+            hasXMark: false,
             relationships: 'Reemplaza a: Maestría con la armadura',
             description:
               'Cuando <strong>elijas que tu armadura se lleve la peor parte del daño que te corresponde</strong>, el daño se cancela y recibes +1 a la siguiente tirada contra el atacante, pero debes reducir el valor de la armadura o escudo (a tu elección) en 1. El valor se reduce cada vez que decides hacerlo. El objeto es destruido si la reducción lo deja con armadura 0.',
           },
           {
             title: 'Mirada Amenazadora',
-            hasXMark: true,
+            hasXMark: false,
             relationships: 'Requiere: Señales de peligro',
             description:
               'Cuando <strong>entras en combate</strong>, tira+CAR.',
@@ -340,14 +340,14 @@ export const guerreroData: PlaybookData = {
           },
           {
             title: 'Sabor a Sangre',
-            hasXMark: true,
+            hasXMark: false,
             relationships: 'Reemplaza a: Olor a sangre',
             description:
               'Cuando <strong>hagas <em>Saja-Raja</em> a un enemigo con éxito</strong>, tu siguiente ataque contra el mismo objetivo hace +1d8 de daño.',
           },
           {
             title: 'Multiclase Aguerrido',
-            hasXMark: true,
+            hasXMark: false,
             description:
               'Recibes un movimiento de otra clase. Trata tu nivel como si fuera inferior en uno al actual para elegir el movimiento.',
           },
