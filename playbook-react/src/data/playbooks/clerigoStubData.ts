@@ -89,6 +89,7 @@ export const clerigoStubData: PlaybookData = {
   // --- Page 2: Advanced Moves + Equipment (stub) ---
   page2: {
     gear: {
+      maxLoadBase: 10,
       fixedItems: [
         'Llevas tu <strong>símbolo sagrado</strong> (peso 0).',
         '<strong>Raciones de viaje</strong> (5 usos, peso 1).',

@@ -167,6 +167,7 @@ export const guerreroData: PlaybookData = {
   // --- Page 2: Advanced Moves + Equipment ---
   page2: {
     gear: {
+      maxLoadBase: 12,
       fixedItems: [
         'Llevas tu <strong>arma distintiva</strong> (peso &nbsp;&nbsp;&nbsp;&nbsp;).',
         '<strong>Raciones de viaje</strong> (5 usos, peso 1).',

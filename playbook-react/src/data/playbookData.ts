@@ -45,6 +45,7 @@ export interface GearGroup {
 }
 
 export interface GearData {
+  maxLoadBase: number;
   fixedItems: string[];
   defenseGroup: GearGroup;
   pickTwoGroup: GearGroup;

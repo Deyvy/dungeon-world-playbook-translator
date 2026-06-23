@@ -58,7 +58,7 @@ export default function GearSection({ gear }: GearSectionProps) {
           marginBottom: '12px',
         }}
       >
-        <span style={{ whiteSpace: 'nowrap', flex: 1 }}>Carga Máxima (12+FUE)</span>
+        <span style={{ whiteSpace: 'nowrap', flex: 1 }}>Carga Máxima ({gear.maxLoadBase}+FUE)</span>
         <div style={{ width: '38px', flexShrink: 0 }} />
         <span style={{ whiteSpace: 'nowrap', marginRight: '4px' }}>Actual</span>
       </div>
