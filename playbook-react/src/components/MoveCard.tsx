@@ -26,10 +26,44 @@ export default function MoveCard({ move }: MoveCardProps) {
         </div>
       )}
 
+      {/* Relationship label (between title and description) */}
+      {move.relationships && (
+        <span
+          style={{
+            fontSize: '10px',
+            fontStyle: 'italic',
+            color: '#666',
+            display: 'block',
+            margin: `2px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+          }}
+        >
+          {move.relationships}
+        </span>
+      )}
+
       {/* Description below */}
       <p style={{ fontSize: '10px', color: '#6c6e70', margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}` }} className="leading-relaxed">
         {move.description}
       </p>
+
+      {/* Detail bullets */}
+      {move.detailBullets && move.detailBullets.length > 0 && (
+        <ul
+          style={{
+            fontSize: '10px',
+            color: '#6c6e70',
+            paddingLeft: '20px',
+            margin: '5px 0',
+            listStyleType: 'disc',
+          }}
+        >
+          {move.detailBullets.map((bullet, i) => (
+            <li key={i} style={{ marginBottom: '2px' }}>
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* Subtext — underscores replaced with writable lines */}
       {move.subtext && (
