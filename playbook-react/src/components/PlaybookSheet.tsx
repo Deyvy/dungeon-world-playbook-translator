@@ -18,15 +18,19 @@ interface PlaybookSheetProps {
 export default function PlaybookSheet({ data }: PlaybookSheetProps) {
   return (
     <div
-      className="playbook-sheet relative mx-auto grid shadow-lg"
+      className="playbook-sheet relative grid mx-auto"
       style={{
         gridTemplateColumns: '68px 1fr',
-        width: '794px' /* ~210mm at 96dpi */,
-        minHeight: '1123px' /* ~297mm at 96dpi (A4) */,
+        width: '794px',
+        minWidth: '794px',
+        minHeight: '1123px',
+        overflow: 'hidden',
+        flexShrink: 0,
         backgroundImage: `url(${backgroundImg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: '#f5f0e8',
+        boxShadow: '0 0 15px rgba(0,0,0,0.2)',
       }}
     >
       {/* Left sidebar — grid row spans full height automatically */}

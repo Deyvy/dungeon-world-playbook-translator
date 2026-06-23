@@ -23,6 +23,9 @@ export interface MoveData {
   subtext?: string;
   choiceGroups?: MoveChoiceGroup[];
   span?: 'half' | 'full';
+  /** When set, splits choiceGroups into two side-by-side columns.
+   *  Groups [0..splitColumnAt-1] render left, groups [splitColumnAt..] render right. */
+  splitColumnAt?: number;
   /** Relationship label shown between title and description (e.g. "Reemplaza a: Despiadado") */
   relationships?: string;
   /** Bullet list items rendered below description */
@@ -46,7 +49,7 @@ export interface GearData {
   defenseGroup: GearGroup;
   pickTwoGroup: GearGroup;
   blankLineCount: number;
-  consumableRows: { emoji: string; count: number }[];
+  consumableRows: { icon: string; groups: number[]; iconSize?: string; groupGap?: number; gap?: string }[];
 }
 
 export interface AdvancedMoveGroup {

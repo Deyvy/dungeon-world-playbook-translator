@@ -1,5 +1,9 @@
 import type { PlaybookData } from '../playbookData';
 import classIcon from '../../assets/icons/class-icon.png';
+import rationIcon from '../../assets/icons/ration-icon.png';
+import ammoIcon from '../../assets/icons/ammo-icon.png';
+import chestIcon from '../../assets/icons/chest-icon.png';
+import potionIcon from '../../assets/icons/potion-icon.png';
 
 export const guerreroData: PlaybookData = {
   meta: { name: 'El Guerrero', classIcon },
@@ -68,6 +72,7 @@ export const guerreroData: PlaybookData = {
       title: 'Arma Distintiva',
       hasXMark: true,
       span: 'full',
+      splitColumnAt: 2,
       description:
         'Esta es tu arma. Hay muchas como ella, pero esta es la tuya. Tu arma es tu mejor amiga. Es tu vida. Eres tan dueño de ella como de tu vida. Sin ti, tu arma es inútil. Sin tu arma, también lo eres tú. Debes empuñarla fielmente.',
       subtext: '¿Tiene nombre?: ______________________',
@@ -89,12 +94,6 @@ export const guerreroData: PlaybookData = {
           columns: 2,
           items: [{ label: 'Toque' }, { label: 'Corto alcance' }, { label: 'Cerca' }],
         },
-      ],
-    },
-    {
-      title: 'Arma Distintiva (cont.)',
-      hasXMark: false,
-      choiceGroups: [
         {
           heading: 'Elige dos mejoras:',
           columns: 1,
@@ -211,10 +210,10 @@ export const guerreroData: PlaybookData = {
       },
       blankLineCount: 18,
       consumableRows: [
-        { emoji: '🍞', count: 5 },
-        { emoji: '🏹', count: 5 },
-        { emoji: '💼', count: 5 },
-        { emoji: '🧪', count: 5 },
+        { icon: rationIcon, groups: [5, 5, 5] },
+        { icon: ammoIcon, groups: [3, 3, 3, 3] },
+        { icon: chestIcon, groups: [5, 5], iconSize: '0.8em', gap: '2px' },
+        { icon: potionIcon, groups: [3, 3, 3], groupGap: 0.5 },
       ],
     },
 

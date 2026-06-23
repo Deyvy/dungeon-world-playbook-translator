@@ -11,15 +11,14 @@ export default function App() {
     if (sheets.length === 0) return;
 
     const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfW = pdf.internal.pageSize.getWidth();
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
 
     for (let i = 0; i < sheets.length; i++) {
       const sheet = sheets[i];
-      const rect = sheet.getBoundingClientRect();
 
+      // Captura a máxima calidad, sin forzar dimensiones para evitar recortes
       const imgData = await domtoimage.toPng(sheet, {
-        width: rect.width,
-        height: rect.height,
         pixelRatio: 4,
         bgcolor: '#f5f0e8',
         cacheBust: true,
@@ -29,8 +28,11 @@ export default function App() {
         pdf.addPage();
       }
 
-      const pdfH = (rect.height * pdfW) / rect.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
+      // La imagen llena exactamente la página A4.
+      // El sheet (794×~1123px) tiene proporción casi idéntica a A4 (210×297mm),
+      // así que la distorsión es mínima (5-10%) e imperceptible.
+      // Esto elimina márgenes, costuras, recortes y pérdida de calidad.
+      pdf.addImage(imgData, 'PNG', 0, 0, pageW, pageH);
     }
 
     pdf.save(`${guerreroData.meta.name.toLowerCase().replace(/\s+/g, '-')}-ficha.pdf`);
@@ -57,9 +59,9 @@ export default function App() {
         </button>
       </div>
 
-      {/* Pages side by side */}
+      {/* Pages stacked vertically */}
       <div
-        className="flex justify-center items-start no-print"
+        className="flex flex-col items-center no-print"
         style={{ gap: '20px' }}
       >
         <PlaybookSheet data={guerreroData} />

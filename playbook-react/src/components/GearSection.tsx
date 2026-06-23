@@ -1,5 +1,7 @@
 import type { GearData } from '../data/playbookData';
 import SectionHeader from './SectionHeader';
+import coinIcon from '../assets/icons/coin-icon.png';
+import bagIcon from '../assets/icons/bag-icon.png';
 
 interface GearSectionProps {
   gear: GearData;
@@ -8,28 +10,61 @@ interface GearSectionProps {
 export default function GearSection({ gear }: GearSectionProps) {
   return (
     <div className="flex flex-col h-full">
-      {/* MONEDAS header */}
-      <SectionHeader title="🪙 MONEDAS" />
+      {/* MONEDAS header — coin icon protruding left (like damage die) */}
+      <div style={{ position: 'relative', marginBottom: '14px' }}>
+        <div className="section-header" style={{ paddingLeft: '56px' }}>
+          <span>MONEDAS</span>
+        </div>
+        <img
+          src={coinIcon}
+          alt="coin"
+          style={{
+            position: 'absolute',
+            top: '-9px',
+            left: '5px',
+            height: '2.5em',
+            objectFit: 'contain',
+            zIndex: 2,
+          }}
+        />
+      </div>
 
-      {/* EQUIPO header */}
-      <SectionHeader title="EQUIPO" />
+      {/* EQUIPO header — bag icon protruding right (like HP heart) */}
+      <div style={{ position: 'relative' }}>
+        <div className="section-header" style={{ paddingRight: '110px' }}>
+          <span>EQUIPO</span>
+        </div>
+        <img
+          src={bagIcon}
+          alt="bag"
+          style={{
+            position: 'absolute',
+            top: '-9px',
+            right: '35px',
+            height: '2.5em',
+            objectFit: 'contain',
+            zIndex: 2,
+          }}
+        />
+      </div>
 
-      {/* Carga info row */}
+      {/* Carga info row — gap accommodates protruding bag icon */}
       <div
-        className="flex justify-between items-center"
+        className="flex items-center"
         style={{
           fontSize: '10px',
-          color: '#1a1a1a',
-          borderBottom: '1px solid #999',
-          padding: '4px 0',
-          marginBottom: '8px',
+          color: '#6c6e70',
+          padding: '4px 0 4px 30px',
+          marginBottom: '12px',
         }}
       >
-        <span>Carga Máxima (12+FUE)</span>
-        <span>Actual</span>
+        <span style={{ whiteSpace: 'nowrap', flex: 1 }}>Carga Máxima (12+FUE)</span>
+        <div style={{ width: '38px', flexShrink: 0 }} />
+        <span style={{ whiteSpace: 'nowrap', marginRight: '4px' }}>Actual</span>
       </div>
 
       {/* Fixed items */}
+      <div style={{ paddingLeft: '5px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       {gear.fixedItems.map((item, i) => (
         <p
           key={i}
@@ -41,7 +76,7 @@ export default function GearSection({ gear }: GearSectionProps) {
 
       {/* Defense group */}
       <span
-        style={{ fontSize: '10px', color: '#6c6e70', marginTop: '8px', marginBottom: '4px' }}
+        style={{ fontSize: '10px', color: '#6c6e70', marginTop: '4px', marginBottom: '2px' }}
         className="italic"
       >
         {gear.defenseGroup.prompt}
@@ -50,8 +85,8 @@ export default function GearSection({ gear }: GearSectionProps) {
         <div key={i} className="flex items-start gap-2" style={{ marginBottom: '6px' }}>
           <div
             style={{
-              width: '18px',
-              height: '18px',
+              width: '14px',
+              height: '14px',
               border: '1.5px solid #aaa',
               borderRadius: '3px',
               background: 'white',
@@ -67,7 +102,7 @@ export default function GearSection({ gear }: GearSectionProps) {
 
       {/* Pick-two group */}
       <span
-        style={{ fontSize: '10px', color: '#6c6e70', marginTop: '10px', marginBottom: '4px' }}
+        style={{ fontSize: '10px', color: '#6c6e70', marginTop: '6px', marginBottom: '2px' }}
         className="italic"
       >
         {gear.pickTwoGroup.prompt}
@@ -76,8 +111,8 @@ export default function GearSection({ gear }: GearSectionProps) {
         <div key={i} className="flex items-start gap-2" style={{ marginBottom: '6px' }}>
           <div
             style={{
-              width: '18px',
-              height: '18px',
+              width: '14px',
+              height: '14px',
               border: '1.5px solid #aaa',
               borderRadius: '3px',
               background: 'white',
@@ -91,34 +126,75 @@ export default function GearSection({ gear }: GearSectionProps) {
         </div>
       ))}
 
-      {/* Blank fill-in lines (flex-grow to fill space) */}
-      <div className="flex flex-col" style={{ marginTop: '20px', flexGrow: 1 }}>
-        {Array.from({ length: gear.blankLineCount }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              borderBottom: '1px solid #999',
-              height: '22px',
-            }}
-          />
-        ))}
+      {/* Blank fill-in lines */}
+      <div
+        style={{
+          marginTop: '4px',
+          marginBottom: '4px',
+          flexGrow: 1,
+          background: `repeating-linear-gradient(
+            to bottom,
+            transparent,
+            transparent 21px,
+            #999 21px,
+            #999 22px
+          )`,
+        }}
+      />
       </div>
 
       {/* CONSUMIBLES */}
       <SectionHeader title="CONSUMIBLES" />
       <div
         style={{
-          fontSize: '1.5em',
-          letterSpacing: '5px',
+          fontSize: '1.2em',
+          letterSpacing: '3px',
           textAlign: 'center',
-          marginTop: '8px',
+          marginTop: '4px',
+          overflow: 'hidden',
         }}
       >
-        {gear.consumableRows.map((row, i) => (
-          <div key={i}>
-            {row.emoji.repeat(row.count)}
-          </div>
-        ))}
+        {gear.consumableRows.map((row, i) => {
+          const size = row.iconSize ?? '1.4em';
+          const gapMul = row.groupGap ?? 1;
+          const spacerW = `calc(${size} * ${gapMul})`;
+          const items: React.ReactNode[] = [];
+          row.groups.forEach((groupSize, gi) => {
+            if (gi > 0) {
+              items.push(
+                <img
+                  key={`sp-${gi}`}
+                  src={row.icon}
+                  alt=""
+                  style={{ width: spacerW, height: size, objectFit: 'contain', visibility: 'hidden' }}
+                />,
+              );
+            }
+            for (let j = 0; j < groupSize; j++) {
+              items.push(
+                <img
+                  key={`${gi}-${j}`}
+                  src={row.icon}
+                  alt=""
+                  style={{ width: size, height: size, objectFit: 'contain' }}
+                />,
+              );
+            }
+          });
+          return (
+            <div
+              key={i}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: row.gap ?? 0,
+                marginBottom: '8px',
+              }}
+            >
+              {items}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

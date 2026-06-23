@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de El Guerrero</title>
+    <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --text-color: #111;
+            --header-bg: #222;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #ddd;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sheet {
+            background-color: var(--bg-color);
+            width: 1000px;
+            min-height: 1400px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Utilidades Generales */
+        .header-banner {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 6px 15px;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .box {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #333;
+            border-radius: 3px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .italic-text {
+            font-style: italic;
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Columna Izquierda */
+        .col-left {
+            width: 28%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .equipo-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+
+        .equipment-list {
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        .blank-lines {
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        .line {
+            border-bottom: 1px solid #999;
+            height: 22px;
+        }
+
+        .consumibles-area {
+            margin-top: 20px;
+            font-size: 1.5em;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+
+        /* Columna Central */
+        .col-center {
+            width: 62%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .moves-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 25px;
+        }
+
+        .move-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .move-desc {
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        .move-req {
+            font-size: 0.8em;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 3px;
+            display: block;
+        }
+
+        .divider {
+            border-bottom: 1px solid #ccc;
+            margin: 25px 0 15px 0;
+        }
+
+        /* Columna Derecha */
+        .col-right {
+            width: 10%;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 0;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 15px 50%);
+        }
+
+        .class-name {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 5.5em;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .right-icon {
+            font-size: 2.5em;
+        }
+
+        .dw-logo {
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            font-size: 1.8em;
+            letter-spacing: -3px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="sheet">
+    
+    <div class="col-left">
+        <div class="header-banner">
+            <img src="images/coin-icon.png" alt="Monedas" style="width:1.5em; height:1.5em; margin-right:10px; vertical-align:middle;"> MONEDAS
+        </div>
+
+        <div class="header-banner" style="justify-content: space-between;">
+            <span>EQUIPO</span>
+            <img src="images/bag-icon.png" alt="Equipo" style="width:1.8em; height:1.8em; margin: -10px 0; vertical-align:middle;">
+        </div>
+
+        <div class="equipo-top">
+            <span>Carga Máxima (12+FUE)</span>
+            <span>Actual</span>
+        </div>
+
+        <div class="equipment-list">
+            <p>Llevas tu <strong>arma distintiva</strong> (peso &nbsp;&nbsp;&nbsp;&nbsp;).</p>
+            <p><strong>Raciones de viaje</strong> (5 usos, peso 1).</p>
+            
+            <span class="italic-text" style="margin-bottom: 5px;">Elige tus defensas:</span>
+            <div class="checkbox-container">
+                <div class="box"></div>
+                <div><strong>Cota de mallas</strong> (armadura 1, peso 1).<br><strong>Equipo de aventurero</strong> (5 usos, peso 1).</div>
+            </div>
+            <div class="checkbox-container">
+                <div class="box"></div>
+                <div><strong>Armadura de escamas</strong> (armadura 2, incómoda, peso 3).</div>
+            </div>
+
+            <span class="italic-text" style="margin-bottom: 5px; margin-top:10px;">Elige dos:</span>
+            <div class="checkbox-container">
+                <div class="box"></div>
+                <div><strong>2 Pociones curativas</strong> (cura 10 PG o debilidad, peso 0).</div>
+            </div>
+            <div class="checkbox-container">
+                <div class="box"></div>
+                <div><strong>Escudo</strong> (+1 armadura, peso 2).</div>
+            </div>
+            <div class="checkbox-container">
+                <div class="box"></div>
+                <div><strong>Antídoto</strong> (peso 0)<br><strong>Raciones de viaje</strong> (5 usos, peso 1),<br><strong>Hierbas y cataplasma</strong> (2 usos, cura 7 PG, lenta, peso 1).</div>
+            </div>
+            <div class="checkbox-container">
+                <div class="box"></div>
+                <div><strong>22 monedas.</strong></div>
+            </div>
+        </div>
+
+        <div class="blank-lines">
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div>
+        </div>
+
+        <div class="header-banner" style="margin-top: 15px;">
+            CONSUMIBLES
+        </div>
+        <div class="consumibles-area">
+            <div>🍞🍞🍞🍞🍞</div>
+            <div>🏹🏹🏹🏹🏹</div>
+            <div>💼💼💼💼💼</div>
+            <div>🧪🧪🧪🧪🧪</div>
+        </div>
+    </div>
+
+    <div class="col-center">
+        <div class="header-banner">
+            MOVIMIENTOS AVANZADOS
+        </div>
+        
+        <span class="italic-text">Cuando subas a un nivel entre 2 y 5, elige uno de los siguientes movimientos.</span>
+
+        <div class="moves-grid">
+            <div>
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Despiadado</div>
+                        <div class="move-desc">Cuando <strong>haces daño</strong>, suma +1d4.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Reliquia Familiar</div>
+                        <div class="move-desc">Cuando <strong>consultes a los espíritus que habitan en tu <em>arma distintiva</em></strong>, te darán orientación relativa a la situación actual y, a cambio, podrán hacerte algunas preguntas. Tira+CAR.<br>
+                        <ul>
+                            <li>Con un 10+, el DJ te dará muchos detalles.</li>
+                            <li>Entre 7 y 9, el DJ te comunicará una sensación.</li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Arma Mejorada</div>
+                        <div class="move-desc">Elige una mejora adicional para tu <em>arma distintiva</em>.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Herrero</div>
+                        <div class="move-desc">Cuando <strong>tienes acceso a una forja</strong> puedes injertar los poderes mágicos de un arma en tu arma distintiva. Este proceso destruye el arma mágica. Tu arma distintiva gana los poderes mágicos del arma destruida.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Piel de Hierro</div>
+                        <div class="move-desc">Recibes +1 armadura.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Maestría con la Armadura</div>
+                        <div class="move-desc">Cuando <strong>elijas que tu armadura se lleve la peor parte del daño que te corresponde</strong>, el daño se anula, pero debes reducir el valor de la armadura o escudo (a tu elección) en 1. El valor se reduce cada vez que decides hacerlo. El objeto es destruido si la reducción lo deja con armadura 0.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Señales de Peligro</div>
+                        <div class="move-desc">Cuando <strong>disciernes la realidad</strong> durante el combate, recibes +1.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Interrogador</div>
+                        <div class="move-desc">Cuando <strong>parlamentes con amenazas o la violencia inminente como ventaja</strong>, puedes usar FUE en lugar de CAR.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Olor a Sangre</div>
+                        <div class="move-desc">Cuando <strong>hagas <em>Saja-Raja</em></strong> a un enemigo <strong>con éxito</strong>, tu siguiente ataque contra el mismo objetivo hace +1d4 de daño.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Multiclase Aficionado</div>
+                        <div class="move-desc">Recibes un movimiento de otra clase. Trata tu nivel como si fuera inferior en uno al actual para elegir el movimiento.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <span class="italic-text">Cuando subas a un nivel entre 6 y 10, elige uno de los siguientes movimientos o de los anteriores.</span>
+
+        <div class="moves-grid">
+            <div>
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Sed de Sangre</div>
+                        <span class="move-req">Reemplaza a: Despiadado</span>
+                        <div class="move-desc">Cuando <strong>haces daño</strong>, suma +1d8.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Con los Ojos de la Muerte</div>
+                        <div class="move-desc">Cuando <strong>entres en combate</strong>, tira+SAB.<br>
+                        <ul>
+                            <li>Con un 10+, nombra alguien que saldrá con vida y alguien que morirá.</li>
+                            <li>Entre 7 y 9, nombra alguien que morirá o alguien que vivirá. Nombra PNJ, no personajes jugadores. El DJ hará que tu visión se vuelva realidad, incluso aunque sea remotamente posible.</li>
+                            <li>Si fallas, ves tu propia muerte y recibes -1 hasta que termine la batalla.</li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Buen Ojo para las Armas</div>
+                        <div class="move-desc">Cuando <strong>eches un vistazo a las armas del enemigo</strong>, puedes preguntar al DJ cuánto daño hacen.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Guerrero Supremo</div>
+                        <div class="move-desc">Cuando <strong>hagas <em>Saja-Raja</em></strong> y sacas un 12+, haces daño, evitas el ataque y además impresionas, acobardas o asustas a tu enemigo.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Piel de Acero</div>
+                        <span class="move-req">Reemplaza a: Piel de hierro</span>
+                        <div class="move-desc">Recibes +2 armadura.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Armadura Perfecta</div>
+                        <span class="move-req">Reemplaza a: Maestría con la armadura</span>
+                        <div class="move-desc">Cuando <strong>elijas que tu armadura se lleve la peor parte del daño que te corresponde</strong>, el daño se cancela y recibes +1 a la siguiente tirada contra el atacante, pero debes reducir el valor de la armadura o escudo (a tu elección) en 1. El valor se reduce cada vez que decides hacerlo. El objeto es destruido si la reducción lo deja con armadura 0.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Mirada Amenazadora</div>
+                        <span class="move-req">Requiere: Señales de peligro</span>
+                        <div class="move-desc">Cuando <strong>entras en combate</strong>, tira+CAR.<br>
+                        <ul>
+                            <li>Con un 10+, recibes 2 puntos.</li>
+                            <li>Entre 7 y 9, recibes 1 punto.</li>
+                        </ul>
+                        Gasta estos puntos para establecer contacto visual con un PNJ presente, que quedará paralizado o acobardado y no podrá actuar mientras no dejes de mirarlo.<br>
+                        <ul>
+                            <li>Si fallas, tus enemigos te identifican inmediatamente como la mayor amenaza.</li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Sabor a Sangre</div>
+                        <span class="move-req">Reemplaza a: Olor a sangre</span>
+                        <div class="move-desc">Cuando <strong>hagas <em>Saja-Raja</em> a un enemigo con éxito</strong>, tu siguiente ataque contra el mismo objetivo hace +1d8 de daño.</div>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <div class="box"></div>
+                    <div>
+                        <div class="move-title">Multiclase Aguerrido</div>
+                        <div class="move-desc">Recibes un movimiento de otra clase. Trata tu nivel como si fuera inferior en uno al actual para elegir el movimiento.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-right">
+        <div class="dw-logo">D<br>W</div>
+        <div class="class-name">EL GUERRERO</div>
+        <div class="right-icon" style="transform: rotate(90deg);">✂️</div>
+    </div>
+
+</div>
+
+</body>
+</html>
