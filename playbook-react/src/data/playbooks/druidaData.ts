@@ -230,17 +230,20 @@ export const druidaData: PlaybookData = {
           {
             title: 'Hermano del Cazador',
             hasXMark: false,
+            column: 'left',
             description: 'Elige un movimiento de la clase del explorador.',
           },
           {
             title: 'Dientes y Garras Rojas',
             hasXMark: false,
+            column: 'left',
             description:
               'Cuando <strong>adoptes una forma animal apropiada</strong> (una bestia peligrosa, como un oso o un gran felino) aumenta tu daño a d8.',
           },
           {
             title: 'Comunión de Susurros',
             hasXMark: false,
+            column: 'left',
             description:
               'Cuando <strong>pasas tiempo en un lugar sintiendo a los espíritus que viven en él y apelando a ellos</strong>, tira+SAB. Se te proporcionará una visión relevante para ti, tus compañeros y los espíritus que os rodean.',
             detailBullets: [
@@ -252,35 +255,41 @@ export const druidaData: PlaybookData = {
           {
             title: 'Piel de Corteza',
             hasXMark: false,
+            column: 'left',
             description: 'Recibes +1 armadura mientras tus pies estén tocando el suelo.',
           },
           {
             title: 'Ojos del Tigre',
             hasXMark: false,
+            column: 'left',
             description:
               'Cuando <strong>marcas a un animal</strong> (con barro, polvo o sangre) puedes ver a través de sus ojos como si fueran los tuyos propios, sin importar la distancia que os separe. Solo puedes dejar tu marca sobre un animal al mismo tiempo.',
           },
           {
             title: 'Mudar',
             hasXMark: false,
+            column: 'left',
             description:
               'Cuando <strong>recibes daño mientras estás en un cambio de forma</strong> puedes elegir volver a tu forma natural para no recibir ese daño.',
           },
           {
             title: 'El que Habla con las Cosas',
             hasXMark: false,
+            column: 'right',
             description:
               'Puedes ver a los espíritus de las arenas, del agua y de la piedra. Además de a los animales, puedes aplicar los movimientos de <em>Lengua de los espíritus</em>, <em>Cambiaformas</em> y <em>Esencia estudiada</em> a los objetos naturales inanimados (plantas y rocas) o a criaturas hechas a partir de ellas. Las formas adoptadas pueden ser copias idénticas de los originales o tener cierta movilidad, siendo vagamente humanoides.',
           },
           {
             title: 'Creaformas',
             hasXMark: false,
+            column: 'right',
             description:
               'Cuando <strong>cambias de forma</strong>, elige una característica: recibes +1 a todas las tiradas usando esa característica hasta que vuelvas a tu forma natural. El DJ elegirá también otra característica: recibes -1 a todas las tiradas con esa característica hasta que vuelvas a tu forma natural.',
           },
           {
             title: 'Maestría Elemental',
             hasXMark: false,
+            column: 'right',
             description:
               'Cuando <strong>apelas a los espíritus primarios del agua, la tierra, el fuego o el aire para llevar a cabo una tarea</strong>, tira+SAB.',
             detailBullets: [
@@ -295,6 +304,7 @@ export const druidaData: PlaybookData = {
           {
             title: 'Equilibrio',
             hasXMark: false,
+            column: 'right',
             description:
               'Cuando <strong>haces daño</strong>, recibes 1 punto de equilibrio. Cuando tocas a alguien y canalizas los espíritus de la vida puedes gastar los puntos de equilibrio. Por cada punto de equilibrio que gastes curas 1d4 PG.',
           },

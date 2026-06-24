@@ -12,20 +12,26 @@ export default function MovesSection({ moves }: MovesSectionProps) {
   const colMoves = moves.filter((m) => m.span !== 'full');
 
   // Split half-width moves into two independent columns.
-  // Respect an explicit `column` override; distribute the rest by parity.
+  // Process in array order: respect explicit `column`, balance the rest.
   const leftMoves: MoveData[] = [];
   const rightMoves: MoveData[] = [];
-  const unassigned: MoveData[] = [];
+  let leftCount = 0;
+  let rightCount = 0;
 
   colMoves.forEach((move) => {
-    if (move.column === 'left') leftMoves.push(move);
-    else if (move.column === 'right') rightMoves.push(move);
-    else unassigned.push(move);
-  });
-
-  unassigned.forEach((move, i) => {
-    if (i % 2 === 0) leftMoves.push(move);
-    else rightMoves.push(move);
+    if (move.column === 'left') {
+      leftMoves.push(move);
+      leftCount++;
+    } else if (move.column === 'right') {
+      rightMoves.push(move);
+      rightCount++;
+    } else if (leftCount <= rightCount) {
+      leftMoves.push(move);
+      leftCount++;
+    } else {
+      rightMoves.push(move);
+      rightCount++;
+    }
   });
 
   return (
