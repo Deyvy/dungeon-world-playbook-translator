@@ -23,7 +23,7 @@ export default function PlaybookSelector({ playbooks, selected, onSelect }: Prop
     [playbooks],
   );
 
-  const currentName = playbooks[selected] ? bareName(playbooks[selected].meta.name) : selected;
+  const currentName = playbooks[selected] ? bareName(playbooks[selected].meta.name) : 'Elige una clase…';
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
@@ -66,8 +66,14 @@ export default function PlaybookSelector({ playbooks, selected, onSelect }: Prop
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="font-averia text-sm uppercase tracking-wider px-4 py-2 rounded border-0 cursor-pointer flex items-center gap-2"
-        style={{ background: dark, color: light }}
+        className="font-averia font-bold text-sm uppercase tracking-wider border-0 cursor-pointer flex items-center gap-2"
+        style={{
+          background: dark,
+          color: light,
+          padding: '10px 14px',
+          clipPath:
+            'polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)',
+        }}
       >
         <span>{currentName}</span>
         <span style={{ fontSize: '0.7em', transition: 'transform 0.15s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}>
@@ -85,7 +91,8 @@ export default function PlaybookSelector({ playbooks, selected, onSelect }: Prop
             marginTop: 4,
             background: dark,
             color: light,
-            borderRadius: 6,
+            clipPath:
+              'polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)',
             overflow: 'hidden',
             zIndex: 50,
             minWidth: 180,
@@ -105,7 +112,6 @@ export default function PlaybookSelector({ playbooks, selected, onSelect }: Prop
                 width: '100%',
                 padding: '6px 8px',
                 border: 'none',
-                borderRadius: 4,
                 outline: 'none',
                 background: '#3a3536',
                 color: light,

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import domtoimage from 'dom-to-image-more';
 import { jsPDF } from 'jspdf';
 import PlaybookSheet from './components/PlaybookSheet';
@@ -7,6 +7,7 @@ import PlaybookSelector from './components/PlaybookSelector';
 import { guerreroData } from './data/playbooks/guerreroData';
 import { clerigoData } from './data/playbooks/clerigoData';
 import type { PlaybookData } from './data/playbookData';
+import landingBg from './assets/DW-background.png';
 
 const playbooks: Record<string, PlaybookData> = {
   guerrero: guerreroData,
@@ -14,10 +15,18 @@ const playbooks: Record<string, PlaybookData> = {
 };
 
 export default function App() {
-  const [selected, setSelected] = useState('guerrero');
-  const data = playbooks[selected];
+  const [selected, setSelected] = useState<string | null>(null);
+  const data = selected ? playbooks[selected] : null;
+
+  // Keep the browser tab title in sync with the selected playbook
+  useEffect(() => {
+    document.title = data
+      ? `${data.meta.name} — Dungeon World Playbook`
+      : 'Dungeon World Playbook';
+  }, [data]);
 
   const downloadPDF = useCallback(async () => {
+    if (!data) return;
     const sheets = document.querySelectorAll<HTMLElement>('.playbook-sheet');
     if (sheets.length === 0) return;
 
@@ -44,13 +53,60 @@ export default function App() {
     pdf.save(`${data.meta.name.toLowerCase().replace(/\s+/g, '-')}.pdf`);
   }, [data]);
 
+  // Welcome screen — no playbook selected yet
+  if (!data) {
+    return (
+      <div
+        className="min-h-screen flex flex-col items-center justify-center gap-6"
+        style={{
+          backgroundImage: `url(${landingBg})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: '#f5f0e8',
+        }}
+      >
+        <div style={{ position: 'relative', top: '80px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
+        <h1
+          className="font-metamorphous text-3xl"
+          style={{ color: '#211d1e' }}
+        >
+          Dungeon World Playbooks
+        </h1>
+        <PlaybookSelector
+          playbooks={playbooks}
+          selected=""
+          onSelect={setSelected}
+        />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#e8e4dc] py-8">
       {/* Playbook selector + Download */}
       <div className="no-print flex justify-center items-center gap-4 mb-4">
+        <button
+          onClick={() => setSelected(null)}
+          className="font-averia font-bold text-xl cursor-pointer"
+          style={{
+            background: '#211d1e',
+            color: '#e8e4dc',
+            padding: '10px 14px',
+            border: 'none',
+            borderRadius: '2px',
+            clipPath:
+              'polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)',
+            lineHeight: 1,
+          }}
+          title="Volver al inicio"
+        >
+          ←
+        </button>
         <PlaybookSelector
           playbooks={playbooks}
-          selected={selected}
+          selected={selected!}
           onSelect={setSelected}
         />
         <button
