@@ -3,8 +3,6 @@ import VerticalBanner from './VerticalBanner';
 import GearSection from './GearSection';
 import AdvancedMovesSection from './AdvancedMovesSection';
 
-import backgroundImg from '../assets/background.png';
-
 interface PlaybookSheetPage2Props {
   data: PlaybookData;
 }
@@ -23,10 +21,7 @@ export default function PlaybookSheetPage2({ data }: PlaybookSheetPage2Props) {
         minHeight: '1123px',
         overflow: 'hidden',
         flexShrink: 0,
-        backgroundImage: `url(${backgroundImg})`,
-        backgroundSize: '100% 100%',
-        backgroundPosition: 'top left',
-        backgroundColor: '#f5f0e8',
+        backgroundColor: '#ffffff',
         boxShadow: '0 0 15px rgba(0,0,0,0.2)',
       }}
     >

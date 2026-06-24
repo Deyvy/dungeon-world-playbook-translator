@@ -7,6 +7,7 @@ import PlaybookSelector from './components/PlaybookSelector';
 import { guerreroData } from './data/playbooks/guerreroData';
 import { clerigoData } from './data/playbooks/clerigoData';
 import { druidaData } from './data/playbooks/druidaData';
+import { ladronData } from './data/playbooks/ladronData';
 import type { PlaybookData } from './data/playbookData';
 import landingBg from './assets/DW-background.png';
 
@@ -14,6 +15,7 @@ const playbooks: Record<string, PlaybookData> = {
   guerrero: guerreroData,
   clerigo: clerigoData,
   druida: druidaData,
+  ladron: ladronData,
 };
 
 export default function App() {

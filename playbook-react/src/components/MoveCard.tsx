@@ -109,7 +109,7 @@ export default function MoveCard({ move }: MoveCardProps) {
     <div className="mb-1" style={{ marginTop: '3px' }}>
       {/* Title row: checkbox always shown, ✕ only when hasXMark. Hidden when split layout handles it in the left column. */}
       {!hasSplit && (
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-start gap-1.5">
           <div
             style={{
               width: '18px',
@@ -143,7 +143,7 @@ export default function MoveCard({ move }: MoveCardProps) {
             fontStyle: 'italic',
             color: '#666',
             display: 'block',
-            margin: `2px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+            margin: `0 0 0 24px`,
           }}
         >
           <span dangerouslySetInnerHTML={{ __html: move.relationships }} />
@@ -156,7 +156,7 @@ export default function MoveCard({ move }: MoveCardProps) {
           style={{
             fontSize: '10px',
             color: '#6c6e70',
-            margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+            margin: `4px 0 0 24px`,
             fontFamily: "'AveriaLibre', sans-serif",
           }}
         >
@@ -171,7 +171,7 @@ export default function MoveCard({ move }: MoveCardProps) {
             fontSize: '9px',
             color: '#6c6e70',
             paddingLeft: '20px',
-            margin: `5px 0 5px ${move.hasXMark ? '24px' : '0px'}`,
+            margin: `5px 0 5px 24px`,
             listStyleType: 'disc',
           }}
         >
@@ -189,7 +189,7 @@ export default function MoveCard({ move }: MoveCardProps) {
           style={{
             fontSize: '10px',
             color: '#6c6e70',
-            margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+            margin: `4px 0 0 24px`,
           }}
           className="mb-1"
         >
@@ -199,10 +199,10 @@ export default function MoveCard({ move }: MoveCardProps) {
 
       {/* Choice groups */}
       {hasSplit ? (
-        <div style={{ margin: `6px 0 0 ${move.hasXMark ? '24px' : '0px'}` }}>
+        <div style={{ margin: `6px 0 0 24px` }}>
           <div className="grid grid-cols-2 gap-x-4">
             <div>
-              <div className="mb-1 flex items-center gap-1.5">
+              <div className="mb-1 flex items-start gap-1.5">
                 <div
                   style={{
                     width: '18px',
@@ -259,7 +259,7 @@ export default function MoveCard({ move }: MoveCardProps) {
         </div>
       ) : (
         move.choiceGroups?.map((group, gi) => (
-          <div key={gi} style={{ margin: `6px 0 0 ${move.hasXMark ? '24px' : '0px'}` }}>
+          <div key={gi} style={{ margin: `6px 0 0 24px` }}>
             {renderGroup(group)}
           </div>
         ))
@@ -271,7 +271,7 @@ export default function MoveCard({ move }: MoveCardProps) {
           style={{
             fontSize: '10px',
             color: '#6c6e70',
-            margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+            margin: `4px 0 0 24px`,
           }}
           className="mb-1"
         >

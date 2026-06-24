@@ -82,16 +82,18 @@ export default function GearSection({ gear }: GearSectionProps) {
       />
       {gear.defenseGroup.items.map((item, i) => (
         <div key={i} className="flex items-start gap-2" style={{ marginBottom: '6px' }}>
-          <div
-            style={{
-              width: '14px',
-              height: '14px',
-              border: '1.5px solid #aaa',
-              borderRadius: '3px',
-              background: 'white',
-              flexShrink: 0,
-            }}
-          />
+          {item.checkbox !== false && (
+            <div
+              style={{
+                width: '14px',
+                height: '14px',
+                border: '1.5px solid #aaa',
+                borderRadius: '3px',
+                background: 'white',
+                flexShrink: 0,
+              }}
+            />
+          )}
           <span
             style={{ fontSize: '10px', color: '#6c6e70', lineHeight: '1.4' }}
             dangerouslySetInnerHTML={{ __html: item.text }}
@@ -107,16 +109,18 @@ export default function GearSection({ gear }: GearSectionProps) {
       />
       {gear.pickTwoGroup.items.map((item, i) => (
         <div key={i} className="flex items-start gap-2" style={{ marginBottom: '6px' }}>
-          <div
-            style={{
-              width: '14px',
-              height: '14px',
-              border: '1.5px solid #aaa',
-              borderRadius: '3px',
-              background: 'white',
-              flexShrink: 0,
-            }}
-          />
+          {item.checkbox !== false && (
+            <div
+              style={{
+                width: '14px',
+                height: '14px',
+                border: '1.5px solid #aaa',
+                borderRadius: '3px',
+                background: 'white',
+                flexShrink: 0,
+              }}
+            />
+          )}
           <span
             style={{ fontSize: '10px', color: '#6c6e70', lineHeight: '1.4' }}
             dangerouslySetInnerHTML={{ __html: item.text }}
