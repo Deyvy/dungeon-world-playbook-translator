@@ -7,6 +7,7 @@ import AlignmentSection from './AlignmentSection';
 import StatsGrid from './StatsGrid';
 import BondsSection from './BondsSection';
 import MovesSection from './MovesSection';
+import MoveCard from './MoveCard';
 import RaceSection from './RaceSection';
 
 import backgroundImg from '../assets/background.png';
@@ -64,6 +65,7 @@ export default function PlaybookSheet({ data }: PlaybookSheetProps) {
             <AlignmentSection alignment={data.alignment} />
             <BondsSection bonds={data.bonds} />
             <RaceSection races={data.races} />
+            {data.extraMove && <MoveCard move={data.extraMove} />}
           </div>
         </div>
       </div>

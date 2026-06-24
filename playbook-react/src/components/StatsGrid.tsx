@@ -11,7 +11,7 @@ export default function StatsGrid({ stats, statValuesHint, statModifiers }: Stat
   return (
     <div>
       {/* Values hint (above the stat blocks) — vertically centered in the gap */}
-      <p className="font-averia text-center text-xs text-gray-600 italic" style={{ marginTop: '0', marginBottom: '7px' }}>{statValuesHint}</p>
+      <p className="font-averia text-center italic" style={{ fontSize: '9px', color: '#6c6e70', marginTop: '0', marginBottom: '7px' }}>{statValuesHint}</p>
 
       {/* 2 rows x 3 cols of stat blocks */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 8px', marginBottom: '4px' }}>
@@ -21,7 +21,7 @@ export default function StatsGrid({ stats, statValuesHint, statModifiers }: Stat
       </div>
 
       {/* Modifiers (below the stat blocks) */}
-      <p className="font-averia text-center text-xs text-gray-600 italic">{statModifiers}</p>
+      <p className="font-averia text-center italic" style={{ fontSize: '9px', color: '#6c6e70' }}>{statModifiers}</p>
     </div>
   );
 }

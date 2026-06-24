@@ -6,12 +6,14 @@ import PlaybookSheetPage2 from './components/PlaybookSheetPage2';
 import PlaybookSelector from './components/PlaybookSelector';
 import { guerreroData } from './data/playbooks/guerreroData';
 import { clerigoData } from './data/playbooks/clerigoData';
+import { druidaData } from './data/playbooks/druidaData';
 import type { PlaybookData } from './data/playbookData';
 import landingBg from './assets/DW-background.png';
 
 const playbooks: Record<string, PlaybookData> = {
   guerrero: guerreroData,
   clerigo: clerigoData,
+  druida: druidaData,
 };
 
 export default function App() {
@@ -20,9 +22,7 @@ export default function App() {
 
   // Keep the browser tab title in sync with the selected playbook
   useEffect(() => {
-    document.title = data
-      ? `${data.meta.name} — Dungeon World Playbook`
-      : 'Dungeon World Playbook';
+    document.title = data ? `${data.meta.name} — Dungeon World Playbook` : 'Dungeon World Playbook';
   }, [data]);
 
   const downloadPDF = useCallback(async () => {
@@ -50,14 +50,15 @@ export default function App() {
       pdf.addImage(imgData, 'PNG', 0, 0, pageW, pageH);
     }
 
-    pdf.save(`${data.meta.name.toLowerCase().replace(/\s+/g, '-')}.pdf`);
+    const className = data.meta.name.replace(/^(El|La|Los|Las)\s+/, '');
+    pdf.save(`${className}.pdf`);
   }, [data]);
 
   // Welcome screen — no playbook selected yet
   if (!data) {
     return (
       <div
-        className="min-h-screen flex flex-col items-center justify-center gap-6"
+        className="flex min-h-screen flex-col items-center justify-center gap-6"
         style={{
           backgroundImage: `url(${landingBg})`,
           backgroundSize: 'contain',
@@ -66,18 +67,20 @@ export default function App() {
           backgroundColor: '#f5f0e8',
         }}
       >
-        <div style={{ position: 'relative', top: '80px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
-        <h1
-          className="font-metamorphous text-3xl"
-          style={{ color: '#211d1e' }}
+        <div
+          style={{
+            position: 'relative',
+            top: '80px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '24px',
+          }}
         >
-          Dungeon World Playbooks
-        </h1>
-        <PlaybookSelector
-          playbooks={playbooks}
-          selected=""
-          onSelect={setSelected}
-        />
+          <h1 className="font-metamorphous text-3xl" style={{ color: '#211d1e' }}>
+            Dungeon World Playbooks
+          </h1>
+          <PlaybookSelector playbooks={playbooks} selected="" onSelect={setSelected} />
         </div>
       </div>
     );
@@ -86,40 +89,34 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#e8e4dc] py-8">
       {/* Playbook selector + Download */}
-      <div className="no-print flex justify-center items-center gap-4 mb-4">
+      <div className="no-print mb-4 flex items-center justify-center gap-4">
         <button
           onClick={() => setSelected(null)}
-          className="font-averia font-bold text-xl cursor-pointer"
+          className="font-averia cursor-pointer text-xl font-bold"
           style={{
             background: '#211d1e',
             color: '#e8e4dc',
             padding: '10px 14px',
             border: 'none',
             borderRadius: '2px',
-            clipPath:
-              'polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)',
+            clipPath: 'polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)',
             lineHeight: 1,
           }}
           title="Volver al inicio"
         >
           ←
         </button>
-        <PlaybookSelector
-          playbooks={playbooks}
-          selected={selected!}
-          onSelect={setSelected}
-        />
+        <PlaybookSelector playbooks={playbooks} selected={selected!} onSelect={setSelected} />
         <button
           onClick={downloadPDF}
-          className="font-averia font-bold text-sm uppercase tracking-wider cursor-pointer"
+          className="font-averia cursor-pointer text-sm font-bold tracking-wider uppercase"
           style={{
             background: '#211d1e',
             color: '#e8e4dc',
             padding: '10px 28px',
             border: 'none',
             borderRadius: '2px',
-            clipPath:
-              'polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)',
+            clipPath: 'polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)',
           }}
         >
           Descargar PDF
@@ -127,10 +124,7 @@ export default function App() {
       </div>
 
       {/* Pages stacked vertically */}
-      <div
-        className="flex flex-col items-center no-print"
-        style={{ gap: '20px' }}
-      >
+      <div className="no-print flex flex-col items-center" style={{ gap: '20px' }}>
         <PlaybookSheet data={data} />
         {data.page2 && <PlaybookSheetPage2 data={data} />}
       </div>

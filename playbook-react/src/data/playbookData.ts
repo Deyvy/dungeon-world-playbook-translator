@@ -30,6 +30,10 @@ export interface MoveData {
   relationships?: string;
   /** Bullet list items rendered below description */
   detailBullets?: string[];
+  /** Force this move into the left or right column in the initial-moves grid */
+  column?: 'left' | 'right';
+  /** Text rendered after choice groups (supports HTML and underscore blank lines) */
+  postText?: string;
 }
 
 // --- Page 2 gear interfaces ---
@@ -50,7 +54,13 @@ export interface GearData {
   defenseGroup: GearGroup;
   pickTwoGroup: GearGroup;
   blankLineCount: number;
-  consumableRows: { icon: string; groups: number[]; iconSize?: string; groupGap?: number; gap?: string }[];
+  consumableRows: {
+    icon: string;
+    groups: number[];
+    iconSize?: string;
+    groupGap?: number;
+    gap?: string;
+  }[];
 }
 
 export interface AdvancedMoveGroup {
@@ -80,6 +90,8 @@ export interface PlaybookData {
   bonds: string[];
   moves: MoveData[];
   races: { name: string; description: string }[];
+  /** Optional move rendered below the Raza block (for tight page-1 layouts) */
+  extraMove?: MoveData;
   /** Optional page 2 data (advanced moves + gear) */
   page2?: Page2Data;
 }

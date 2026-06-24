@@ -1,71 +1,107 @@
-import type { MoveData } from '../data/playbookData';
+import { Fragment } from 'react';
+import type { MoveData, MoveChoiceGroup, MoveChoice } from '../data/playbookData';
 
 interface MoveCardProps {
   move: MoveData;
+}
+
+function renderParagraphs(text: string) {
+  return text
+    .split('\n\n')
+    .filter(Boolean)
+    .map((para, pi, arr) => {
+      const gap = arr.length > 1 && pi < arr.length - 1;
+      return (
+        <p key={pi} className={gap ? 'leading-none mb-1' : 'leading-none'}>
+          {para.split('\n').map((line, li) => (
+            <Fragment key={li}>
+              {li > 0 && <br />}
+              {line.split(/(_+)/).map((part, i) =>
+                part.startsWith('_') ? (
+                  <span
+                    key={i}
+                    style={{
+                      display: 'inline-block',
+                      minWidth: '100px',
+                      borderBottom: '1px solid #6c6e70',
+                      opacity: 0.6,
+                      margin: '0 2px',
+                      height: '1em',
+                    }}
+                  />
+                ) : (
+                  <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
+                )
+              )}
+            </Fragment>
+          ))}
+        </p>
+      );
+    });
 }
 
 export default function MoveCard({ move }: MoveCardProps) {
   const hasSplit = move.splitColumnAt != null && move.choiceGroups && move.choiceGroups.length > 0;
 
   /** Renders a single choice group with its heading and item checkboxes */
-  const renderGroup = (group: MoveData['choiceGroups'][number]) => (
+  const renderGroup = (group: MoveChoiceGroup) => (
     <div className="mb-1">
       {group.heading && (
         <p
           style={{ fontSize: '10px', color: '#6c6e70' }}
-          className="italic mb-1"
+          className="mb-1 italic"
           dangerouslySetInnerHTML={{ __html: group.heading }}
         />
       )}
       <div style={{ marginLeft: '12px' }}>
-      {group.columns && group.columns > 1 ? (
-        <div
-          className="grid gap-x-4 gap-y-0.5"
-          style={{ gridTemplateColumns: `repeat(${group.columns}, 1fr)` }}
-        >
-          {group.items.map((item, ii) => (
-            <div key={ii} className="flex items-start gap-1.5">
-              <div
-                style={{
-                  width: '14px',
-                  height: '14px',
-                  border: '1.5px solid #aaa',
-                  borderRadius: '3px',
-                  background: 'white',
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{ fontSize: '10px', color: '#6c6e70' }}
-                className="leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: item.label }}
-              />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="space-y-0.5">
-          {group.items.map((item, ii) => (
-            <div key={ii} className="flex items-start gap-1.5">
-              <div
-                style={{
-                  width: '14px',
-                  height: '14px',
-                  border: '1.5px solid #aaa',
-                  borderRadius: '3px',
-                  background: 'white',
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{ fontSize: '10px', color: '#6c6e70' }}
-                className="leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: item.label }}
-              />
-            </div>
-          ))}
-        </div>
-      )}
+        {group.columns && group.columns > 1 ? (
+          <div
+            className="grid gap-x-4 gap-y-0.5"
+            style={{ gridTemplateColumns: `repeat(${group.columns}, 1fr)` }}
+          >
+            {group.items.map((item: MoveChoice, ii: number) => (
+              <div key={ii} className="flex items-start gap-1.5">
+                <div
+                  style={{
+                    width: '14px',
+                    height: '14px',
+                    border: '1.5px solid #aaa',
+                    borderRadius: '3px',
+                    background: 'white',
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{ fontSize: '10px', color: '#6c6e70' }}
+                  className="leading-none"
+                  dangerouslySetInnerHTML={{ __html: item.label }}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-0.5">
+            {group.items.map((item: MoveChoice, ii: number) => (
+              <div key={ii} className="flex items-start gap-1.5">
+                <div
+                  style={{
+                    width: '14px',
+                    height: '14px',
+                    border: '1.5px solid #aaa',
+                    borderRadius: '3px',
+                    background: 'white',
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{ fontSize: '10px', color: '#6c6e70' }}
+                  className="leading-none"
+                  dangerouslySetInnerHTML={{ __html: item.label }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -116,11 +152,16 @@ export default function MoveCard({ move }: MoveCardProps) {
 
       {/* Description below — hidden when split layout handles it in the left column */}
       {!hasSplit && move.description && (
-        <p
-          style={{ fontSize: '10px', color: '#6c6e70', margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}`, fontFamily: "'AveriaLibre', sans-serif" }}
-          className="leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: move.description }}
-        />
+        <div
+          style={{
+            fontSize: '10px',
+            color: '#6c6e70',
+            margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+            fontFamily: "'AveriaLibre', sans-serif",
+          }}
+        >
+          {renderParagraphs(move.description)}
+        </div>
       )}
 
       {/* Detail bullets */}
@@ -145,26 +186,14 @@ export default function MoveCard({ move }: MoveCardProps) {
       {/* Subtext — underscores replaced with writable lines. Hidden when split layout handles it in the left column. */}
       {!hasSplit && move.subtext && (
         <div
-          style={{ fontSize: '10px', color: '#6c6e70', margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}` }}
-          className="leading-relaxed mb-1"
+          style={{
+            fontSize: '10px',
+            color: '#6c6e70',
+            margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+          }}
+          className="mb-1"
         >
-          {move.subtext.split(/(_+)/).map((part, i) =>
-            part.startsWith('_') ? (
-              <span
-                key={i}
-                style={{
-                  display: 'inline-block',
-                  minWidth: '100px',
-                  borderBottom: '1px solid #6c6e70',
-                  opacity: 0.6,
-                  margin: '0 2px',
-                  height: '1em',
-                }}
-              />
-            ) : (
-              <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
-            )
-          )}
+          {renderParagraphs(move.subtext)}
         </div>
       )}
 
@@ -173,7 +202,7 @@ export default function MoveCard({ move }: MoveCardProps) {
         <div style={{ margin: `6px 0 0 ${move.hasXMark ? '24px' : '0px'}` }}>
           <div className="grid grid-cols-2 gap-x-4">
             <div>
-              <div className="flex items-center gap-1.5 mb-1">
+              <div className="mb-1 flex items-center gap-1.5">
                 <div
                   style={{
                     width: '18px',
@@ -198,31 +227,23 @@ export default function MoveCard({ move }: MoveCardProps) {
                 </span>
               </div>
               {move.description && (
-                <p
-                  style={{ fontSize: '10px', color: '#6c6e70', fontFamily: "'AveriaLibre', sans-serif" }}
-                  className="leading-relaxed mb-1"
-                  dangerouslySetInnerHTML={{ __html: move.description }}
-                />
+                <div
+                  style={{
+                    fontSize: '10px',
+                    color: '#6c6e70',
+                    fontFamily: "'AveriaLibre', sans-serif",
+                  }}
+                  className="mb-1"
+                >
+                  {renderParagraphs(move.description)}
+                </div>
               )}
               {move.subtext && (
-                <div style={{ fontSize: '10px', color: '#6c6e70' }} className="leading-relaxed mb-1">
-                  {move.subtext.split(/(_+)/).map((part, i) =>
-                    part.startsWith('_') ? (
-                      <span
-                        key={i}
-                        style={{
-                          display: 'inline-block',
-                          minWidth: '100px',
-                          borderBottom: '1px solid #6c6e70',
-                          opacity: 0.6,
-                          margin: '0 2px',
-                          height: '1em',
-                        }}
-                      />
-                    ) : (
-                      <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
-                    )
-                  )}
+                <div
+                  style={{ fontSize: '10px', color: '#6c6e70' }}
+                  className="mb-1"
+                >
+                  {renderParagraphs(move.subtext)}
                 </div>
               )}
               {move.choiceGroups!.slice(0, move.splitColumnAt!).map((group, i) => (
@@ -242,6 +263,20 @@ export default function MoveCard({ move }: MoveCardProps) {
             {renderGroup(group)}
           </div>
         ))
+      )}
+
+      {/* Post-choice text — rendered after all choice groups */}
+      {move.postText && (
+        <div
+          style={{
+            fontSize: '10px',
+            color: '#6c6e70',
+            margin: `4px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
+          }}
+          className="mb-1"
+        >
+          {renderParagraphs(move.postText)}
+        </div>
       )}
     </div>
   );
