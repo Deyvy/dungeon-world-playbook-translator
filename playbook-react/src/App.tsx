@@ -8,6 +8,7 @@ import { guerreroData } from './data/playbooks/guerreroData';
 import { clerigoData } from './data/playbooks/clerigoData';
 import { druidaData } from './data/playbooks/druidaData';
 import { ladronData } from './data/playbooks/ladronData';
+import { bardoData } from './data/playbooks/bardoData';
 import type { PlaybookData } from './data/playbookData';
 import landingBg from './assets/DW-background.png';
 
@@ -16,6 +17,7 @@ const playbooks: Record<string, PlaybookData> = {
   clerigo: clerigoData,
   druida: druidaData,
   ladron: ladronData,
+  bardo: bardoData,
 };
 
 export default function App() {
