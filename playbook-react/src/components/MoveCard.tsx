@@ -11,9 +11,11 @@ export default function MoveCard({ move }: MoveCardProps) {
   const renderGroup = (group: MoveData['choiceGroups'][number]) => (
     <div className="mb-1">
       {group.heading && (
-        <p style={{ fontSize: '10px', color: '#6c6e70' }} className="italic mb-1">
-          {group.heading}
-        </p>
+        <p
+          style={{ fontSize: '10px', color: '#6c6e70' }}
+          className="italic mb-1"
+          dangerouslySetInnerHTML={{ __html: group.heading }}
+        />
       )}
       <div style={{ marginLeft: '12px' }}>
       {group.columns && group.columns > 1 ? (
@@ -33,9 +35,11 @@ export default function MoveCard({ move }: MoveCardProps) {
                   flexShrink: 0,
                 }}
               />
-              <span style={{ fontSize: '10px', color: '#6c6e70' }} className="leading-relaxed">
-                {item.label}
-              </span>
+              <span
+                style={{ fontSize: '10px', color: '#6c6e70' }}
+                className="leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: item.label }}
+              />
             </div>
           ))}
         </div>
@@ -53,9 +57,11 @@ export default function MoveCard({ move }: MoveCardProps) {
                   flexShrink: 0,
                 }}
               />
-              <span style={{ fontSize: '10px', color: '#6c6e70' }} className="leading-relaxed">
-                {item.label}
-              </span>
+              <span
+                style={{ fontSize: '10px', color: '#6c6e70' }}
+                className="leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: item.label }}
+              />
             </div>
           ))}
         </div>
@@ -104,7 +110,7 @@ export default function MoveCard({ move }: MoveCardProps) {
             margin: `2px 0 0 ${move.hasXMark ? '24px' : '0px'}`,
           }}
         >
-          {move.relationships}
+          <span dangerouslySetInnerHTML={{ __html: move.relationships }} />
         </span>
       )}
 
@@ -130,7 +136,7 @@ export default function MoveCard({ move }: MoveCardProps) {
         >
           {move.detailBullets.map((bullet, i) => (
             <li key={i} style={{ marginBottom: '2px' }}>
-              {bullet}
+              <span dangerouslySetInnerHTML={{ __html: bullet }} />
             </li>
           ))}
         </ul>
@@ -156,7 +162,7 @@ export default function MoveCard({ move }: MoveCardProps) {
                 }}
               />
             ) : (
-              <span key={i}>{part}</span>
+              <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
             )
           )}
         </div>
@@ -214,7 +220,7 @@ export default function MoveCard({ move }: MoveCardProps) {
                         }}
                       />
                     ) : (
-                      <span key={i}>{part}</span>
+                      <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
                     )
                   )}
                 </div>

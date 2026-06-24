@@ -29,9 +29,7 @@ export default function AlignmentSection({ alignment }: AlignmentSectionProps) {
               </span>
             </div>
             {/* Description below */}
-            <p style={{ fontSize: '10px', color: '#6c6e70', margin: '0 0 0 24px' }}>
-              {option.description}
-            </p>
+            <p style={{ fontSize: '10px', color: '#6c6e70', margin: '0 0 0 24px' }} dangerouslySetInnerHTML={{ __html: option.description }} />
           </div>
         ))}
         {/* Extra option: checkbox + write lines for custom alignment */}

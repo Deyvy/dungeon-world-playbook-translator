@@ -78,9 +78,8 @@ export default function GearSection({ gear }: GearSectionProps) {
       <span
         style={{ fontSize: '10px', color: '#6c6e70', marginTop: '4px', marginBottom: '2px' }}
         className="italic"
-      >
-        {gear.defenseGroup.prompt}
-      </span>
+        dangerouslySetInnerHTML={{ __html: gear.defenseGroup.prompt }}
+      />
       {gear.defenseGroup.items.map((item, i) => (
         <div key={i} className="flex items-start gap-2" style={{ marginBottom: '6px' }}>
           <div
@@ -104,9 +103,8 @@ export default function GearSection({ gear }: GearSectionProps) {
       <span
         style={{ fontSize: '10px', color: '#6c6e70', marginTop: '6px', marginBottom: '2px' }}
         className="italic"
-      >
-        {gear.pickTwoGroup.prompt}
-      </span>
+        dangerouslySetInnerHTML={{ __html: gear.pickTwoGroup.prompt }}
+      />
       {gear.pickTwoGroup.items.map((item, i) => (
         <div key={i} className="flex items-start gap-2" style={{ marginBottom: '6px' }}>
           <div

@@ -17,9 +17,8 @@ export default function AdvancedMovesSection({ groups }: AdvancedMovesSectionPro
           <span
              style={{ fontSize: '10px', color: '#6c6e70', display: 'block', marginBottom: '6px', marginTop: '6px' }}
             className="italic leading-relaxed"
-          >
-            {group.instruction}
-          </span>
+            dangerouslySetInnerHTML={{ __html: group.instruction }}
+          />
 
           {/* 2-column grid of MoveCards (column-major: first half left, second half right) */}
           <div

@@ -10,7 +10,7 @@ export default function AppearanceSection({ appearance }: AppearanceSectionProps
     <div style={{ overflow: 'hidden' }}>
       <SectionHeader title="Apariencia" />
       <div className="font-averia mt-1" style={{ fontSize: '9px' }}>
-        <p className="mb-1 italic" style={{ color: '#6c6e70' }}>{appearance.prompt}</p>
+        <p className="mb-1 italic" style={{ color: '#6c6e70' }} dangerouslySetInnerHTML={{ __html: appearance.prompt }} />
         {appearance.fields.map((field) => (
           <div key={field.label} className="mb-0.5 flex items-baseline">
             <span

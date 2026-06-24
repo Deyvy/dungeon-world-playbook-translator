@@ -29,9 +29,7 @@ export default function RaceSection({ races }: RaceSectionProps) {
               </span>
             </div>
             {/* Description below */}
-            <p style={{ fontSize: '10px', color: '#6c6e70', margin: '0 0 0 24px' }}>
-              {race.description}
-            </p>
+            <p style={{ fontSize: '10px', color: '#6c6e70', margin: '0 0 0 24px' }} dangerouslySetInnerHTML={{ __html: race.description }} />
           </div>
         ))}
         {/* Extra option: checkbox + write lines for custom race */}

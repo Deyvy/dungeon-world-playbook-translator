@@ -5,12 +5,12 @@ import PlaybookSheet from './components/PlaybookSheet';
 import PlaybookSheetPage2 from './components/PlaybookSheetPage2';
 import PlaybookSelector from './components/PlaybookSelector';
 import { guerreroData } from './data/playbooks/guerreroData';
-import { clerigoStubData } from './data/playbooks/clerigoStubData';
+import { clerigoData } from './data/playbooks/clerigoData';
 import type { PlaybookData } from './data/playbookData';
 
 const playbooks: Record<string, PlaybookData> = {
   guerrero: guerreroData,
-  clerigo: clerigoStubData,
+  clerigo: clerigoData,
 };
 
 export default function App() {
