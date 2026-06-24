@@ -30,6 +30,10 @@ coverage/
 # Resources (user-only, not part of the project)
 recursos/
 
+# SDD artifacts (managed in Engram)
+openspec/
+.atl/
+
 # Temp
 *.tmp
 .cache/
