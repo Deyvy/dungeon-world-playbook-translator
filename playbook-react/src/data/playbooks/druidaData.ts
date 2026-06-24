@@ -102,7 +102,7 @@ export const druidaData: PlaybookData = {
       choiceGroups: [
         {
           heading: 'Elige una de las siguientes tierras:',
-          columns: 2,
+          columns: 1,
           items: [
             { label: 'Los Grandes Bosques' },
             { label: 'Las Praderas Susurrantes' },
