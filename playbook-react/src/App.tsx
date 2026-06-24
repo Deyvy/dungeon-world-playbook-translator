@@ -41,7 +41,7 @@ export default function App() {
 
       const imgData = await domtoimage.toPng(sheet, {
         pixelRatio: 4,
-        bgcolor: '#f5f0e8',
+        bgcolor: i === 0 ? '#f5f0e8' : '#ffffff',
         cacheBust: true,
       });
 
