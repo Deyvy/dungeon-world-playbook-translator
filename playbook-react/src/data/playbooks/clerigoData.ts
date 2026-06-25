@@ -1,9 +1,11 @@
 import type { PlaybookData } from '../playbookData';
 import classIcon from '../../assets/icons/class-icon.png';
 import { CONSUMABLE_ROWS } from '../consumables';
+import { clerigoSpellsData } from './clerigoSpellsData';
 
 export const clerigoData: PlaybookData = {
   meta: { name: 'El Clérigo', classIcon },
+  spells: clerigoSpellsData,
 
   raceNames: [
     {
@@ -141,7 +143,7 @@ export const clerigoData: PlaybookData = {
     gear: {
       maxLoadBase: 10,
       fixedItems: [
-        '<strong>Algún símbolo de tu deidad</strong> (peso 0), descríbelo. ________________',
+        'Algún <strong>símbolo de tu deidad</strong> (peso 0), descríbelo. ________________',
         '<strong>Raciones de viaje</strong> (5 usos, peso 1).',
       ],
       defenseGroup: {
@@ -169,19 +171,15 @@ export const clerigoData: PlaybookData = {
             checkbox: true,
           },
           {
-            text: '<strong>Báculo</strong> (cerca, a dos manos, peso 1).',
+            text: '<strong>Báculo</strong> (cerca, a dos manos, peso 1) y <strong>Vendajes</strong> (3 usos, cura 4 PG, lentos, peso 0).',
             checkbox: true,
           },
           {
-            text: '<strong>Vendajes</strong> (3 usos, cura 4 PG, lentos, peso 0).',
-            checkbox: true,
+            text: '<em>Elige uno:</em>',
+            checkbox: false,
           },
           {
-            text: '<strong>Equipo de aventurero</strong> (5 usos, peso 1).',
-            checkbox: true,
-          },
-          {
-            text: '<strong>Raciones de viaje</strong> (5 usos, peso 1).',
+            text: '<strong>Equipo de aventurero</strong> (5 usos, peso 1) y <strong>Raciones de viaje</strong> (5 usos, peso 1).',
             checkbox: true,
           },
           {

@@ -1,43 +1,8 @@
-import { Fragment } from 'react';
 import type { MoveData, MoveChoiceGroup, MoveChoice } from '../data/playbookData';
+import { renderParagraphs } from './richTextUtils';
 
 interface MoveCardProps {
   move: MoveData;
-}
-
-function renderParagraphs(text: string) {
-  return text
-    .split('\n\n')
-    .filter(Boolean)
-    .map((para, pi, arr) => {
-      const gap = arr.length > 1 && pi < arr.length - 1;
-      return (
-        <p key={pi} className={gap ? 'leading-none mb-1' : 'leading-none'}>
-          {para.split('\n').map((line, li) => (
-            <Fragment key={li}>
-              {li > 0 && <br />}
-              {line.split(/(_+)/).map((part, i) =>
-                part.startsWith('_') ? (
-                  <span
-                    key={i}
-                    style={{
-                      display: 'inline-block',
-                      minWidth: '100px',
-                      borderBottom: '1px solid #6c6e70',
-                      opacity: 0.6,
-                      margin: '0 2px',
-                      height: '1em',
-                    }}
-                  />
-                ) : (
-                  <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
-                )
-              )}
-            </Fragment>
-          ))}
-        </p>
-      );
-    });
 }
 
 export default function MoveCard({ move }: MoveCardProps) {

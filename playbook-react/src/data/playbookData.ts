@@ -1,4 +1,5 @@
 import type { DamageDie } from './dieIcons';
+import type { SpellSheetData } from './spellsData';
 
 export interface StatData {
   name: string;
@@ -94,4 +95,6 @@ export interface PlaybookData {
   extraMove?: MoveData;
   /** Optional page 2 data (advanced moves + gear) */
   page2?: Page2Data;
+  /** Optional spell sheet data (clérigo, mago, etc.) linked to this playbook. */
+  spells?: SpellSheetData;
 }

@@ -2,9 +2,14 @@ import dwIcon from '../assets/icons/dw-icon.png';
 
 interface VerticalBannerProps {
   meta: { name: string; classIcon: string };
+  /** Etiqueta vertical opcional (por defecto el nombre de la clase). */
+  label?: string;
+  /** Tamaño de fuente opcional para la etiqueta (px). Por defecto 54. */
+  labelFontSize?: number;
 }
 
-export default function VerticalBanner({ meta }: VerticalBannerProps) {
+export default function VerticalBanner({ meta, label, labelFontSize = 54 }: VerticalBannerProps) {
+  const text = label ?? meta.name.toUpperCase();
   return (
     <div
       className="relative flex flex-col items-center overflow-hidden h-full"
@@ -61,12 +66,12 @@ export default function VerticalBanner({ meta }: VerticalBannerProps) {
             style={{
               writingMode: 'vertical-lr',
               transform: 'rotate(180deg)',
-              fontSize: '54px',
+              fontSize: `${labelFontSize}px`,
               letterSpacing: '0.12em',
               fontWeight: 400,
             }}
           >
-            {meta.name.toUpperCase()}
+            {text}
           </span>
         </div>
 
