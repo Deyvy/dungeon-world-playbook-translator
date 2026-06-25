@@ -63,7 +63,7 @@ export const bardoData: PlaybookData = {
       hasXMark: true,
       column: 'left',
       description:
-        'Cuando imbuyes con magia una de tus actuaciones, elige un compañero y un efecto:',
+        'Cuando <strong>imbuyes con magia una de tus actuaciones</strong>, elige un compañero y un efecto:',
       detailBullets: [
         'Cura 1d8 de daño.',
         '+1d4 a la siguiente tirada de daño.',
@@ -78,7 +78,7 @@ export const bardoData: PlaybookData = {
       hasXMark: true,
       column: 'left',
       description:
-        'Cuando hablas sinceramente con alguien, puedes hacer a su jugador una pregunta de la siguiente lista. Debe responderte honestamente y luego puede hacerte una pregunta de la lista que tú deberás responder de forma sincera.',
+        'Cuando <strong>hablas sinceramente con alguien</strong>, puedes hacer a su jugador una pregunta de la siguiente lista. Debe responderte honestamente y luego puede hacerte una pregunta de la lista que tú deberás responder de forma sincera.',
       detailBullets: [
         '¿A quién sirves?',
         '¿Qué te gustaría que hiciera yo?',
@@ -107,14 +107,14 @@ export const bardoData: PlaybookData = {
         },
       ],
       postText:
-        'Cuando encuentres por primera vez una criatura, lugar u objeto importante (tú decides) que entre dentro de tu conocimiento, puedes hacer al DJ una pregunta al respecto y te responderá con sinceridad. El DJ puede preguntarte luego de qué cuento, canción o leyenda has obtenido esa información.',
+        'Cuando <strong>encuentres por primera vez una criatura, lugar u objeto importante (tú decides) que entre dentro de tu conocimiento</strong>, puedes hacer al DJ una pregunta al respecto y te responderá con sinceridad. El DJ puede preguntarte luego de qué cuento, canción o leyenda has obtenido esa información.',
     },
     {
       title: 'Un Puerto en la Tormenta',
       hasXMark: true,
       column: 'right',
       description:
-        'Cuando vuelves a un asentamiento civilizado que has visitado con anterioridad, dile al DJ cuándo fue la última vez que estuviste aquí y él te dirá de qué forma ha cambiado desde entonces.',
+        'Cuando <strong>vuelves a un asentamiento civilizado que has visitado con anterioridad</strong>, dile al DJ cuándo fue la última vez que estuviste aquí y él te dirá de qué forma ha cambiado desde entonces.',
     },
   ],
 
@@ -122,12 +122,12 @@ export const bardoData: PlaybookData = {
     {
       name: 'Elfo',
       description:
-        'Cuando llegas a un lugar importante (tú decides) puedes preguntar al DJ acerca de un hecho de la historia de dicho emplazamiento.',
+        'Cuando <strong>llegas a un lugar importante</strong> (tú decides) puedes preguntar al DJ acerca de un hecho de la historia de dicho emplazamiento.',
     },
     {
       name: 'Humano',
       description:
-        'Cuando llegas por primera vez a un asentamiento civilizado, alguien que respeta la costumbre de la hospitalidad hacia los juglares te acogerá como invitado.',
+        'Cuando <strong>llegas por primera vez a un asentamiento civilizado</strong>, alguien que respeta la costumbre de la hospitalidad hacia los juglares te acogerá como invitado.',
     },
   ],
 
