@@ -171,7 +171,7 @@ export const clerigoData: PlaybookData = {
             checkbox: true,
           },
           {
-            text: '<strong>Báculo</strong> (cerca, a dos manos, peso 1) y <strong>Vendajes</strong> (3 usos, cura 4 PG, lentos, peso 0).',
+            text: '<strong>Báculo</strong> (cerca, a dos manos, peso 1).<br><strong>Vendajes</strong> (3 usos, cura 4 PG, lentos, peso 0).',
             checkbox: true,
           },
           {
@@ -179,7 +179,7 @@ export const clerigoData: PlaybookData = {
             checkbox: false,
           },
           {
-            text: '<strong>Equipo de aventurero</strong> (5 usos, peso 1) y <strong>Raciones de viaje</strong> (5 usos, peso 1).',
+            text: '<strong>Equipo de aventurero</strong> (5 usos, peso 1).<br><strong>Raciones de viaje</strong> (5 usos, peso 1).',
             checkbox: true,
           },
           {
