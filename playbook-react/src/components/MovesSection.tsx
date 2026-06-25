@@ -49,12 +49,12 @@ export default function MovesSection({ moves }: MovesSectionProps) {
         {/* Two independent flex columns — no forced row alignment */}
         {(leftMoves.length > 0 || rightMoves.length > 0) && (
           <div className="grid grid-cols-2 gap-x-2">
-            <div className="flex flex-col">
+            <div className="flex flex-col" style={{ gap: '6px' }}>
               {leftMoves.map((move, i) => (
                 <MoveCard key={`left-${i}`} move={move} />
               ))}
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col" style={{ gap: '6px' }}>
               {rightMoves.map((move, i) => (
                 <MoveCard key={`right-${i}`} move={move} />
               ))}
