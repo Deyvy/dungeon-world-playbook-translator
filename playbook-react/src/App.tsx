@@ -11,6 +11,7 @@ import { druidaData } from './data/playbooks/druidaData';
 import { ladronData } from './data/playbooks/ladronData';
 import { bardoData } from './data/playbooks/bardoData';
 import { exploradorData } from './data/playbooks/exploradorData';
+import { barbaroData } from './data/playbooks/barbaroData';
 import type { PlaybookData } from './data/playbookData';
 import landingBg from './assets/DW-background.png';
 
@@ -21,6 +22,7 @@ const playbooks: Record<string, PlaybookData> = {
   ladron: ladronData,
   bardo: bardoData,
   explorador: exploradorData,
+  barbaro: barbaroData,
 };
 
 export default function App() {

@@ -23,7 +23,7 @@ export interface MoveData {
   description?: string;
   subtext?: string;
   choiceGroups?: MoveChoiceGroup[];
-  span?: 'half' | 'full';
+  span?: 'half' | 'full' | 'stack';
   /** When set, splits choiceGroups into two side-by-side columns.
    *  Groups [0..splitColumnAt-1] render left, groups [splitColumnAt..] render right. */
   splitColumnAt?: number;
@@ -74,6 +74,13 @@ export interface Page2Data {
   advancedMoves: AdvancedMoveGroup[];
 }
 
+export interface RaceData {
+  name: string;
+  description: string;
+  footerLabel?: string;
+  footerLines?: number;
+}
+
 export interface PlaybookData {
   meta: { name: string; classIcon: string };
   /** Optional per-playbook example names for each race, displayed below the header row */
@@ -90,7 +97,9 @@ export interface PlaybookData {
   alignment: { label: string; description: string }[];
   bonds: string[];
   moves: MoveData[];
-  races: { name: string; description: string }[];
+  races: RaceData[];
+  /** Hides the extra "custom race" checkbox + write lines below the race list */
+  hideRaceExtra?: boolean;
   /** Optional move rendered below the Raza block (for tight page-1 layouts) */
   extraMove?: MoveData;
   /** Optional page 2 data (advanced moves + gear) */

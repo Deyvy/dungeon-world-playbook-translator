@@ -7,9 +7,10 @@ interface MovesSectionProps {
 }
 
 export default function MovesSection({ moves }: MovesSectionProps) {
-  // Separate full-span moves from column moves
+  // Separate stacked, full-span, and column moves
+  const stackMoves = moves.filter((m) => m.span === 'stack');
   const fullMoves = moves.filter((m) => m.span === 'full');
-  const colMoves = moves.filter((m) => m.span !== 'full');
+  const colMoves = moves.filter((m) => m.span !== 'full' && m.span !== 'stack');
 
   // Split half-width moves into two independent columns.
   // Process in array order: respect explicit `column`, balance the rest.
@@ -45,6 +46,15 @@ export default function MovesSection({ moves }: MovesSectionProps) {
             <MoveCard move={move} />
           </div>
         ))}
+
+        {/* Stacked moves — single column, one below the other */}
+        {stackMoves.length > 0 && (
+          <div className="flex flex-col" style={{ gap: '6px', marginBottom: '4px' }}>
+            {stackMoves.map((move, i) => (
+              <MoveCard key={`stack-${i}`} move={move} />
+            ))}
+          </div>
+        )}
 
         {/* Two independent flex columns — no forced row alignment */}
         {(leftMoves.length > 0 || rightMoves.length > 0) && (

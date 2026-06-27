@@ -8,6 +8,31 @@ interface MoveCardProps {
 export default function MoveCard({ move }: MoveCardProps) {
   const hasSplit = move.splitColumnAt != null && move.choiceGroups && move.choiceGroups.length > 0;
 
+  const isInstruction =
+    !move.title &&
+    !move.description &&
+    !move.choiceGroups?.length &&
+    !move.subtext &&
+    !move.detailBullets?.length &&
+    !move.postText &&
+    !!move.relationships;
+
+  if (isInstruction) {
+    return (
+      <div className="mb-1">
+        <span
+          style={{
+            fontSize: '9px',
+            fontStyle: 'italic',
+            color: '#666',
+            display: 'block',
+          }}
+          dangerouslySetInnerHTML={{ __html: move.relationships! }}
+        />
+      </div>
+    );
+  }
+
   /** Renders a single choice group with its heading and item checkboxes */
   const renderGroup = (group: MoveChoiceGroup) => (
     <div className="mb-1">

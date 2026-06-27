@@ -64,7 +64,7 @@ export default function PlaybookSheet({ data }: PlaybookSheetProps) {
           <div className="col-span-1 flex flex-col">
             <AlignmentSection alignment={data.alignment} />
             <BondsSection bonds={data.bonds} />
-            <RaceSection races={data.races} />
+            <RaceSection races={data.races} hideExtra={data.hideRaceExtra} />
             {data.extraMove && <MoveCard move={data.extraMove} />}
           </div>
         </div>
