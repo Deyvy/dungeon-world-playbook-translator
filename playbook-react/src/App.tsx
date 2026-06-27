@@ -10,6 +10,7 @@ import { clerigoData } from './data/playbooks/clerigoData';
 import { druidaData } from './data/playbooks/druidaData';
 import { ladronData } from './data/playbooks/ladronData';
 import { bardoData } from './data/playbooks/bardoData';
+import { exploradorData } from './data/playbooks/exploradorData';
 import type { PlaybookData } from './data/playbookData';
 import landingBg from './assets/DW-background.png';
 
@@ -19,6 +20,7 @@ const playbooks: Record<string, PlaybookData> = {
   druida: druidaData,
   ladron: ladronData,
   bardo: bardoData,
+  explorador: exploradorData,
 };
 
 export default function App() {

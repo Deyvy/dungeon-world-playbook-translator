@@ -219,29 +219,43 @@ export default function MoveCard({ move }: MoveCardProps) {
               {move.choiceGroups!.slice(move.splitColumnAt!).map((group, i) => (
                 <div key={i}>{renderGroup(group)}</div>
               ))}
+              {/* Post-choice text — inside right column when split layout */}
+              {move.postText && (
+                <div
+                  style={{
+                    fontSize: '10px',
+                    color: '#6c6e70',
+                    margin: `6px 0 0`,
+                  }}
+                  className="mb-1"
+                >
+                  {renderParagraphs(move.postText)}
+                </div>
+              )}
             </div>
           </div>
         </div>
       ) : (
-        move.choiceGroups?.map((group, gi) => (
-          <div key={gi} style={{ margin: `6px 0 0 24px` }}>
-            {renderGroup(group)}
-          </div>
-        ))
-      )}
-
-      {/* Post-choice text — rendered after all choice groups */}
-      {move.postText && (
-        <div
-          style={{
-            fontSize: '10px',
-            color: '#6c6e70',
-            margin: `4px 0 0 24px`,
-          }}
-          className="mb-1"
-        >
-          {renderParagraphs(move.postText)}
-        </div>
+        <>
+          {move.choiceGroups?.map((group, gi) => (
+            <div key={gi} style={{ margin: `6px 0 0 24px` }}>
+              {renderGroup(group)}
+            </div>
+          ))}
+          {/* Post-choice text — rendered after all choice groups */}
+          {move.postText && (
+            <div
+              style={{
+                fontSize: '10px',
+                color: '#6c6e70',
+                margin: `4px 0 0 24px`,
+              }}
+              className="mb-1"
+            >
+              {renderParagraphs(move.postText)}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

@@ -43,7 +43,7 @@ export default function BondsSection({ bonds }: BondsSectionProps) {
         </div>
         {/* Write lines for custom bonds */}
         <div className="mt-2">
-          {[0, 1, 2, 3].map((i) => (
+          {[0, 1, 2].map((i) => (
             <div
               key={i}
               style={{
