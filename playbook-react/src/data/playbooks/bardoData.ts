@@ -1,5 +1,5 @@
 import type { PlaybookData } from '../playbookData';
-import classIcon from '../../assets/icons/class-icon.png';
+import classIcon from '../../assets/icons/bardo-icon.png';
 import { CONSUMABLE_ROWS } from '../consumables';
 
 export const bardoData: PlaybookData = {

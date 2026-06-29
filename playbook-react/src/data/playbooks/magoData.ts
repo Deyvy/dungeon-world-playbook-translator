@@ -1,5 +1,5 @@
 import type { PlaybookData } from '../playbookData';
-import classIcon from '../../assets/icons/class-icon.png';
+import classIcon from '../../assets/icons/mago-icon.png';
 import { CONSUMABLE_ROWS } from '../consumables';
 import { magoSpellsData } from './magoSpellsData';
 

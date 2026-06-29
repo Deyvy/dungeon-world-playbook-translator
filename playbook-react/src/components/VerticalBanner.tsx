@@ -37,7 +37,7 @@ export default function VerticalBanner({ meta, label, labelFontSize = 54 }: Vert
         <img
           src={meta.classIcon}
           alt="Class"
-          style={{ width: '40px', height: '40px', opacity: 0.8 }}
+          style={{ width: '56px', height: 'auto', maxHeight: '140px', opacity: 0.9, objectFit: 'contain' }}
         />
       </div>
 
