@@ -1,5 +1,6 @@
 import type { GearData } from '../data/playbookData';
 import SectionHeader from './SectionHeader';
+import { renderUnderscores } from './richTextUtils';
 import coinIcon from '../assets/icons/coin-icon.png';
 import bagIcon from '../assets/icons/bag-icon.png';
 
@@ -70,8 +71,9 @@ export default function GearSection({ gear }: GearSectionProps) {
           key={i}
           style={{ fontSize: '10px', color: '#6c6e70', margin: '0 0 4px' }}
           className="leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: item }}
-        />
+        >
+          {renderUnderscores(item)}
+        </p>
       ))}
 
       {/* Defense group */}
@@ -96,8 +98,9 @@ export default function GearSection({ gear }: GearSectionProps) {
           )}
           <span
             style={{ fontSize: '10px', color: '#6c6e70', lineHeight: '1.4' }}
-            dangerouslySetInnerHTML={{ __html: item.text }}
-          />
+          >
+            {renderUnderscores(item.text)}
+          </span>
         </div>
       ))}
 
@@ -123,8 +126,9 @@ export default function GearSection({ gear }: GearSectionProps) {
           )}
           <span
             style={{ fontSize: '10px', color: '#6c6e70', lineHeight: '1.4' }}
-            dangerouslySetInnerHTML={{ __html: item.text }}
-          />
+          >
+            {renderUnderscores(item.text)}
+          </span>
         </div>
       ))}
 

@@ -15,6 +15,7 @@ export interface MoveChoiceGroup {
   heading: string;
   items: MoveChoice[];
   columns?: number;
+  headingItalic?: boolean;
 }
 
 export interface MoveData {

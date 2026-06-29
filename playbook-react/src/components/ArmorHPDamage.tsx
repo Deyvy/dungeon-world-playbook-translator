@@ -50,12 +50,12 @@ export default function ArmorHPDamage({ hpBase, damageDie }: ArmorHPDamageProps)
           className="font-averia flex items-center"
           style={{ marginTop: '4px', padding: '0 8px', fontSize: '9px' }}
         >
-          <span className="italic" style={{ color: '#6c6e70', paddingLeft: '10px', whiteSpace: 'nowrap', flex: 1 }}>
+          <span style={{ color: '#6c6e70', paddingLeft: '10px', whiteSpace: 'nowrap', flex: 1 }}>
             Máximos ({hpBase}+Constitución)
           </span>
           {/* Gap where the heart icon bottom protrudes */}
           <div style={{ width: '60px', flexShrink: 0 }} />
-          <span className="italic" style={{ color: '#6c6e70', whiteSpace: 'nowrap' }}>Actuales</span>
+          <span style={{ color: '#6c6e70', whiteSpace: 'nowrap' }}>Actuales</span>
         </div>
       </div>
 

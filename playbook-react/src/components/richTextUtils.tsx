@@ -1,6 +1,28 @@
 import { Fragment } from 'react';
 import type { CSSProperties } from 'react';
 
+/** Convierte grupos de guiones bajos (_____) en líneas de subrayado continuo.
+ *  El resto del texto se renderiza con dangerouslySetInnerHTML para soportar HTML básico.
+ *  Usar en contextos donde renderParagraphs sea demasiado pesado (bullets, equipo, etc.). */
+export function renderUnderscores(text: string) {
+  return text.split(/(_+)/).map((part, i) =>
+    part.startsWith('_') ? (
+      <span
+        key={i}
+        style={{
+          display: 'inline-block',
+          minWidth: '100px',
+          borderBottom: '1px solid #6c6e70',
+          opacity: 0.6,
+          verticalAlign: 'bottom',
+        }}
+      />
+    ) : (
+      <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
+    ),
+  );
+}
+
 export interface RenderParagraphsOpts {
   /** Tamaño de fuente aplicado a cada <p>. Si se omite, no se inlinea font-size. */
   fontSize?: string;
@@ -45,23 +67,7 @@ export function renderParagraphs(text: string, opts: RenderParagraphsOpts = {}) 
           {para.split('\n').map((line, li) => (
             <Fragment key={li}>
               {li > 0 && <br />}
-              {line.split(/(_+)/).map((part, i) =>
-                part.startsWith('_') ? (
-                  <span
-                    key={i}
-                    style={{
-                      display: 'inline-block',
-                      minWidth: '100px',
-                      borderBottom: '1px solid #6c6e70',
-                      opacity: 0.6,
-                      margin: '0 2px',
-                      height: '1em',
-                    }}
-                  />
-                ) : (
-                  <span key={i} dangerouslySetInnerHTML={{ __html: part }} />
-                ),
-              )}
+              {renderUnderscores(line)}
             </Fragment>
           ))}
         </p>

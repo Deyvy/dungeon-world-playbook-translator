@@ -1,5 +1,5 @@
 import type { MoveData, MoveChoiceGroup, MoveChoice } from '../data/playbookData';
-import { renderParagraphs } from './richTextUtils';
+import { renderParagraphs, renderUnderscores } from './richTextUtils';
 
 interface MoveCardProps {
   move: MoveData;
@@ -39,11 +39,11 @@ export default function MoveCard({ move }: MoveCardProps) {
       {group.heading && (
         <p
           style={{ fontSize: '10px', color: '#6c6e70' }}
-          className="mb-1 italic"
+          className={`mb-1${group.headingItalic !== false ? ' italic' : ''}`}
           dangerouslySetInnerHTML={{ __html: group.heading }}
         />
       )}
-      <div style={{ marginLeft: '12px' }}>
+      <div style={{ marginLeft: '20px' }}>
         {group.columns && group.columns > 1 ? (
           <div
             className="grid gap-x-4 gap-y-0.5"
@@ -64,8 +64,9 @@ export default function MoveCard({ move }: MoveCardProps) {
                 <span
                   style={{ fontSize: '10px', color: '#6c6e70' }}
                   className="leading-none"
-                  dangerouslySetInnerHTML={{ __html: item.label }}
-                />
+                >
+                  {renderUnderscores(item.label)}
+                </span>
               </div>
             ))}
           </div>
@@ -86,8 +87,9 @@ export default function MoveCard({ move }: MoveCardProps) {
                 <span
                   style={{ fontSize: '10px', color: '#6c6e70' }}
                   className="leading-none"
-                  dangerouslySetInnerHTML={{ __html: item.label }}
-                />
+                >
+                  {renderUnderscores(item.label)}
+                </span>
               </div>
             ))}
           </div>
@@ -167,7 +169,7 @@ export default function MoveCard({ move }: MoveCardProps) {
         >
           {move.detailBullets.map((bullet, i) => (
             <li key={i} style={{ marginBottom: '2px' }}>
-              <span dangerouslySetInnerHTML={{ __html: bullet }} />
+              {renderUnderscores(bullet)}
             </li>
           ))}
         </ul>
