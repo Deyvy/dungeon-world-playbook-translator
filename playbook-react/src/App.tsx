@@ -12,6 +12,7 @@ import { ladronData } from './data/playbooks/ladronData';
 import { bardoData } from './data/playbooks/bardoData';
 import { exploradorData } from './data/playbooks/exploradorData';
 import { barbaroData } from './data/playbooks/barbaroData';
+import { magoData } from './data/playbooks/magoData';
 import type { PlaybookData } from './data/playbookData';
 import landingBg from './assets/DW-background.png';
 
@@ -23,6 +24,7 @@ const playbooks: Record<string, PlaybookData> = {
   bardo: bardoData,
   explorador: exploradorData,
   barbaro: barbaroData,
+  mago: magoData,
 };
 
 export default function App() {

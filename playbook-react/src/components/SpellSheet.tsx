@@ -184,6 +184,13 @@ export default function SpellSheet({ data }: SpellSheetProps) {
     gap: '6px',
   };
 
+  const page1ContentStyle: React.CSSProperties = {
+    padding: '10px 1px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0px',
+  };
+
   return (
     <>
       {/* Página 1 — barra a la izquierda */}
@@ -192,7 +199,7 @@ export default function SpellSheet({ data }: SpellSheetProps) {
           meta={data.meta}
           label={label}
         />
-        <div style={contentStyle}>
+        <div style={page1ContentStyle}>
           {spells.page1.map((section, i) => (
             <SpellSectionBlock key={i} section={section} />
           ))}
